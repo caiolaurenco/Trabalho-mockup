@@ -1,9 +1,7 @@
-.header {
-    
+.HEADER {
     background-color: #ffffff;
-    text-align: center;
-    padding: 2rem;
-   
+    text-align: right;
+ 
 
 }
 
@@ -13,18 +11,20 @@ body {
     margin: 0px;
     padding: 0px;
     font-style: oblique;
+
     }
 
-
     .logo1 {
-        text-align: left;
+        text-align: center;
         width: 10px;
         height: 10px;
 
 
     }
 
+
     footer {
         text-align: right;
         
     }
+    
