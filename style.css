@@ -2,15 +2,27 @@
     background-color: #ffffff;
     text-align: center;
     padding: 2rem;
-    border-bottom: 5px solid #113d9b;
+   
 
 }
 
 body {
     background-color: #ffffff;
-}
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    }
+
 
     .logo1 {
+        text-align: left;
+        width: 10px;
+        height: 10px;
 
+
+    }
+
+    footer {
+        text-align: right;
         
     }
