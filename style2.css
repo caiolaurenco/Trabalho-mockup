@@ -1,8 +1,11 @@
-.HEADER {
-    background-color: #ffffff;
-    text-align: right;
- 
+header {
 
+    text-align: right;
+}
+
+header img {
+
+    height: 60px;
 }
 
 body {
@@ -14,17 +17,38 @@ body {
 
     }
 
+
+
     .logo1 {
         text-align: center;
-        width: 10px;
-        height: 10px;
+        width: 5px;
+        height: 150px;
 
 
     }
 
-
-    footer {
-        text-align: right;
-        
+    .imagem2{
+        height: 280px;
+     
     }
+   
+    .imagem3{
+        text-align: center;
+        height: 120px;
+    }
+
+    .imagem4{
+        height: 150px;
+    }
+
+   .img4 {
+
+        margin-top: 80px;
+   }
+
+   .img3 {
+    margin-top: 100px;
+   }
+
+    
     
