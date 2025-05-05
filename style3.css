@@ -1,19 +1,17 @@
+
+
 body { 
     margin: 0px;
-
 }
 
-
+.flex {
+    display: flex;
+}
 
 header {
     background-color: rgb(150, 142, 142);
     margin: 0px;
     padding: 0px;
     height: 80px;
-
-}
-
-.fundo {
-    height: 400px;
 
 }
