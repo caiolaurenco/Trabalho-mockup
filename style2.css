@@ -1,54 +1,67 @@
-header {
 
+    
+    
+    
+
+.esqueceu-senha{
+    text-align: center;
+    display: flex;
+    margin-left: 112px;
+
+
+}
+.login{
+    width: 90%;
+    max-width: 400px;
+    display flex: ;
+    align-items: center;
+    border: 2px solid #003b5c ;
+    border-radius: 25px;
+    padding: 10px 15px ;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.senha{
+    display flex: ;
+    align-items: center;
+    border: 2px solid #003b5c ;
+    border-radius: 25px;
+    padding: 10px 15px ;
+    margin-bottom: 15px;
+    background-color: white;
+
+}
+
+.senha i{
+    font-size: 20px;
+    margin-right: 10px;
+    color: #003b5c;
+  }
+
+.esqueceu-senha{
+    text-align: center;
+    margin-top: 10px;
+  }
+
+.esqueceu-senha a {
+    color: #5d5d5d;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+.fesqueceu-senha a:hover {
+    text-decoration: underline;
+}
+
+.img3 img {
+    width: 350px;
+    height: 230px;
+}
+header{
+    text-align: center;
+}
+
+.proximo img{
     text-align: right;
 }
-
-header img {
-
-    height: 60px;
-}
-
-body {
-    background-color: #ffffff;
-    text-align: center;
-    margin: 0px;
-    padding: 0px;
-    font-style: oblique;
-
-    }
-
-
-
-    .logo1 {
-        text-align: center;
-        width: 5px;
-        height: 150px;
-
-
-    }
-
-    .imagem2{
-        height: 260px;
-     
-    }
-   
-    .imagem3{
-        text-align: center;
-        height: 120px;
-    }
-
-    .imagem4{
-        height: 130px;
-    }
-
-   .img4 {
-
-        margin-top: 80px;
-   }
-
-   .img3 {
-    margin-top: 100px;
-   }
-
-    
-    
