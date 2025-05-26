@@ -23,8 +23,7 @@ nav img{
     margin-top: 30px;
     margin-bottom: 15px;
     width: 35px;
-   
-
+    
 }
 
 .LOGO1 {
@@ -40,5 +39,13 @@ margin: 0%;
 margin-top: 20px;
 }
 
+.ferrorama{
+    text-align: center;
+}
+
+.notificações{
+    background-color: rgb(233, 225, 225) ;
+    border-radius: 35px;
+}
 
 
