@@ -59,8 +59,24 @@ margin-top: 20px;
         margin-top: 20px;
        margin-right: 20px;
         margin-left: 20px;
+        
 
     
    
 }
-
+.flex6{
+    width: 200px;       
+    padding: 8px;
+    font-size: 16px;    
+    border-radius: 50px;
+    background-color: #9b9191;
+   display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: lighter;
+    text-align: center;
+    margin-top: 100px;
+ 
+    margin-left: 100px;
+ 
+}
