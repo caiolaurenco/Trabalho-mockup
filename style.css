@@ -3,9 +3,32 @@
     background-color: #ffffff;
     text-align: center;
     padding: 0rem;
-   
+    font-size: 3px;
+    margin-top: 60px;
+    margin-bottom: 100px;
+   }
 
+.header img {
+    height: 140px;
+    width: 290px;
 }
+
+.texto_proximo{
+    margin-bottom: 34%;
+}
+
+.next_bt {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+
+.next img {
+
+    height: 190px;
+    width: 200px; 
+}
+
 
 body {
     background-color: #ffffff;
