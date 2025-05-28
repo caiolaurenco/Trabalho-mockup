@@ -24,7 +24,10 @@ input {
     border: 2px solid #003b5c ;
     border-radius: 27px;
     padding: 10px 15px ;
-    margin-bottom: 15px;
+    margin-left: 17px;
+    margin-bottom: 10px;
+    width: 350px;
+    max-width: 400px;
     background-color: rgb(255, 255, 255);
     color: #003b5c
     
@@ -34,13 +37,18 @@ input {
 
     width: 350px;
     max-width: 400px;
-    display: flex ;
+    margin: auto;
     border: 2px solid #003b5c ;
     border-radius: 27px;
     padding: 10px 15px ;
     margin-bottom: 15px;
     background-color: rgb(255, 255, 255);
     color: #003b5c
+}
+
+.senha img {
+    display: flex;
+    justify-content: center;
 }
 
 .senha i{
@@ -55,12 +63,12 @@ input {
 }
 .imagem2 {
     width: 175px;
-    margin-bottom: 55px;
+    margin-bottom: 35px;
 }
 
 .esqueceu-senha{
     text-align: center;
-    margin-top: 5px;
+    margin-top: 1%;
   }
 
 .esqueceu-senha a {
@@ -82,13 +90,15 @@ header{
     text-align: center;
 }
 
-.proximo img{
-    text-align: center;
+.proximo {
+    display: flex;
+    margin-left: 86%;
+    margin-top: 1%;
 
 }
 
 .border2 {
-    margin-left: 5px;
+    margin-left: 1%;
 }
 
 .flex{
@@ -97,8 +107,13 @@ header{
 
 .imagem3 {
     display: flex;
-    margin: 70px;
+    margin: 19%;
     width: 250px;
-    margin-top: 170px;
-    margin-bottom: 0px;
+    margin-top: 40%;
+    margin-bottom: 0%;
+}
+
+.next_bt{
+    background-color: transparent;
+    border-color: transparent;
 }
