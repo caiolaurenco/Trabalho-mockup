@@ -1,47 +1,70 @@
+*{
+    padding: 0%;
+    margin: 0px;
+}  
 
-    
-    
-    
+input {
+    all: unset; 
+}
+
+.body{
+    display: flex ;
+    margin: 15px;
+}
+
 
 .esqueceu-senha{
-    text-align: center;
     display: flex;
-    margin-left: 112px;
-
-
+    margin-left: 0%;
+    position:absolute;
+    left: 137px;
 }
-.login{
-    width: 90%;
-    max-width: 400px;
-    display flex: ;
-    align-items: center;
+
+.border{
+    display: flex;
     border: 2px solid #003b5c ;
-    border-radius: 25px;
+    border-radius: 27px;
     padding: 10px 15px ;
     margin-bottom: 15px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
+    margin-left: 5px;
+   
+    color: #003b5c
+    
 }
 
 .senha{
-    display flex: ;
-    align-items: center;
+
+    width: 350px;
+    max-width: 400px;
+    display: flex ;
     border: 2px solid #003b5c ;
-    border-radius: 25px;
+    border-radius: 27px;
     padding: 10px 15px ;
     margin-bottom: 15px;
-    background-color: white;
-
+    background-color: rgb(255, 255, 255);
+    color: #003b5c
 }
 
 .senha i{
+   
     font-size: 20px;
-    margin-right: 10px;
     color: #003b5c;
   }
 
+
+
+.login {
+    height: 20px;
+}
+.imagem2 {
+    width: 175px;
+    margin-bottom: 55px;
+}
+
 .esqueceu-senha{
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
   }
 
 .esqueceu-senha a {
@@ -50,18 +73,36 @@
     font-size: 14px;
   }
 
-.fesqueceu-senha a:hover {
+.esqueceu-senha a:hover {
     text-decoration: underline;
 }
 
 .img3 img {
     width: 350px;
-    height: 230px;
+    height: 200px;
+    text-align: center;
 }
 header{
     text-align: center;
 }
 
 .proximo img{
-    text-align: right;
+    text-align: center;
+
+}
+
+.border2 {
+    margin-left: 5px;
+}
+
+.flex{
+    display: flex;
+}
+
+.imagem3 {
+    display: flex;
+    margin: 70px;
+    width: 250px;
+    margin-top: 170px;
+    margin-bottom: 0px;
 }
