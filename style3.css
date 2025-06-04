@@ -3,6 +3,8 @@
 }
 .flex {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 body {
@@ -184,7 +186,8 @@ margin-top: 20px;
   left: 34%;
   bottom: 6%;
 }
-  
+
+
 
    
 
