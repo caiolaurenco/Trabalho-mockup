@@ -5,11 +5,15 @@ function removerElementos() {
     }
   } 
 
-  function trocarImagem() {
-    const img = document.getElementById("minhaImagem");
-    if (img.src.includes("bell.png")) {
-      img.src = "silent.png";
+  
+  function substituirImagem() {
+    const img = document.getElementById('imagem');
+    const srcAtual = img.getAttribute('src');
+    const imagem1 = 'imagem/notification.png'; 
+    const imagem2 = 'imagem/bell.png'; 
+    if (srcAtual === imagem/notification.png) {
+        img.setAttribute('src', imagem/bell.png);
     } else {
-      img.src = "bell.png";
+        img.setAttribute('src', imagem/notification.png);
     }
-  }
+}
