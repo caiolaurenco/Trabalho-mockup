@@ -7,7 +7,10 @@
 
 body {
     background-color: rgb(255, 255, 255);
-
+    background-image: url("imagem/imagen-fundo.png");
+    background-repeat: no-repeat;
+    background-size:120%;
+    
 }
 nav{
     background-color: rgb(122, 121, 121);
@@ -19,6 +22,7 @@ nav img{
     margin-top: 30px;
     margin-bottom: 15px;
     width: 35px;
+    
 
 }
 
@@ -47,7 +51,7 @@ margin-top: 20px;
     position: absolute;
     font-size: 32px;
     left: 35px;
-    top: 195px;
+    top: 165px;
     color: white;
     font-family: Sans-serif
     
@@ -61,7 +65,7 @@ margin-top: 20px;
     position: absolute;
     font-size: 23px;
     left: 25px;
-    top: 280px;
+    top: 250px;
     color: rgb(255, 255, 255);
     font-family: Sans-serif;
     background-color: rgb(27, 74, 226);
@@ -69,14 +73,6 @@ margin-top: 20px;
     border-radius: 20px;
 
   }
-
-   #menu1 {
-    position: absolute;
-    background-color: rgb(255, 0, 0);
-    left: 100px;
-    top: 400px;
-    
-   }
 
    .menu {
     background-color: rgb(224, 216, 216);
@@ -86,7 +82,8 @@ margin-top: 20px;
     font-family: Sans-serif;
     padding: 15px;
     border-radius: 40px;
-    left: 20px;
+    left: 10px;
+    top: 40%;
    }
 
    .titulo_menu {
@@ -171,6 +168,7 @@ margin-top: 20px;
     outline: 0;
     width: 180px;
     text-align: right;
+    color: white;
    }
 
    .subtexto {
@@ -180,7 +178,12 @@ margin-top: 20px;
     font-weight: bold;
     color: rgb(3, 3, 49);
    }
-
+.rotasgo {
+  position: absolute;
+  color: white;
+  left: 34%;
+  bottom: 6%;
+}
   
 
    
