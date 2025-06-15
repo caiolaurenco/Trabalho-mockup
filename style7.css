@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* MENU SUPERIOR */
+nav .flex {
+  display: flex;
+  align-items: center;
+  background-color: #003366;
+  padding: 10px;
+  color: white;
+}
+
+nav img {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.LOGO1 img {
+  height: 40px;
+  margin-right: 20px;
+}
+
+.bus1, .bus2, .lupa {
+  text-align: center;
+  margin-right: 15px;
+}
+
+.subtexto {
+  font-size: 10px;
+  color: white;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Esconde a sidebar fora da tela */
+  width: 250px;
+  height: 100%;
+  background-color: #001f3f;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.active {
+  left: 0; /* Exibe a sidebar quando ativa */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 15px 20px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+}
+
+.sidebar ul li a:hover {
+  background-color: #003366;
+  border-radius: 5px;
+}

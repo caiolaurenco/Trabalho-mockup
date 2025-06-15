@@ -1,7 +1,7 @@
 function removerElementos() {
     const conteudo = document.getElementById("conteudo");
     if (conteudo) {
-      conteudo.remove(); // remove o elemento <div id="conteudo"> inteiro
+      conteudo.remove(); 
     }
   } 
 
@@ -17,3 +17,24 @@ function removerElementos() {
         img.setAttribute('src', imagem/notification.png);
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const menuButton = document.getElementById("menu-button");
+  const sidebar = document.getElementById("sidebar");
+
+ 
+  menuButton.addEventListener("click", (e) => {
+    e.stopPropagation(); 
+    sidebar.classList.toggle("active");
+  });
+
+ 
+  sidebar.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+
+  
+  document.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+  });
+});
