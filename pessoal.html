@@ -1,12 +1,11 @@
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style3.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Usuários</title>
+  <link rel="stylesheet" href="style8.css">
 </head>
-
 <body>
     <aside id="sidebar" class="sidebar">
     <ul>
@@ -49,38 +48,35 @@
 
   <script src="script.js"></script>
 
-    <div class="conteiner">
-        
-        <label id="texto">Acompanhe seu trem <br> em tempo real
-        </label>
-        <label id="texto1">CLIQUE AQUI PARA ACESSAR
-        </label>
+  <div class="container">
+    <h2>Gestão de Usuários</h2>
+
+    <form class="formulario">
+      <input type="text" placeholder="Nome completo" required>
+      <input type="email" placeholder="E-mail" required>
+      <select>
+        <option value="">Selecionar perfil</option>
+        <option>Administrador</option>
+        <option>Operador</option>
+        <option>Visitante</option>
+      </select>
+      <button type="submit">Cadastrar Usuário</button>
+    </form>
+
+    <h3>Usuários cadastrados</h3>
+    <div class="lista-usuarios">
+      <div class="usuario">
+        <p><strong>Maria Silva</strong></p>
+        <p>Email: maria@email.com</p>
+        <p>Perfil: Administrador</p>
+      </div>
+      <div class="usuario">
+        <p><strong>João Oliveira</strong></p>
+        <p>Email: joao@email.com</p>
+        <p>Perfil: Operador</p>
+      </div>
     </div>
+  </div>
 
-    <div class="menu">
-        <h2 class="titulo_menu">ROTAS</h2>
-        <br>
-        <input type="partida" id="partida1" placeholder="PONTO DE PARTIDA">
-        <BR>
-        <BR>
-        <input type="destino" id="destino1" placeholder="Destino">
-        <BR>
-        <BR>
-        <input type="data" id="data1" placeholder="Hoje - 26/05">
-        <BR>
-        <BR>
-        <br>
-        <input type="partida_chegada" id="pc1" placeholder="Partida">
-        <input type="hora" id="hora1" placeholder="09:20">
-        <BR>
-        <BR>
-        <input type="bucar" id="buscar1">
-        <div class="busc">
-        <input type="bucar" id="buscar2"> <p class="rotasgo">BUSCAR ROTAS </p>
-        </div>
-    </div>
-
-
-    </div>
-
+</body>
 </html>

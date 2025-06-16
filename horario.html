@@ -1,14 +1,13 @@
-<html lang="en">
 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style3.css">
+    <title>rotas</title>
+    <link rel="stylesheet" href="style7.css">
 </head>
-
 <body>
-    <aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar">
     <ul>
       <li><a href="index.html"><img src="imagem/casa.png" alt="casa">Início</a></li>
       <li><a href="pessoal.html"><img src="imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
@@ -49,38 +48,44 @@
 
   <script src="script.js"></script>
 
-    <div class="conteiner">
-        
-        <label id="texto">Acompanhe seu trem <br> em tempo real
-        </label>
-        <label id="texto1">CLIQUE AQUI PARA ACESSAR
-        </label>
+    <div class="top-bar">
+    <input type="date" value="2025-04-08" class="data-input" />
+    <select class="estacao-select">
+      <option>Selecionar estação</option>
+      <option>Estação Central</option>
+      <option>Estação Norte</option>
+      <option>Estação Sul</option>
+    </select>
+  </div>
+
+  <div class="tabela-horarios">
+    <div class="linha">
+      <span class="hora">08:00</span>
+      <span class="hora">08:04</span>
+      <span class="hora">08:07</span>
     </div>
-
-    <div class="menu">
-        <h2 class="titulo_menu">ROTAS</h2>
-        <br>
-        <input type="partida" id="partida1" placeholder="PONTO DE PARTIDA">
-        <BR>
-        <BR>
-        <input type="destino" id="destino1" placeholder="Destino">
-        <BR>
-        <BR>
-        <input type="data" id="data1" placeholder="Hoje - 26/05">
-        <BR>
-        <BR>
-        <br>
-        <input type="partida_chegada" id="pc1" placeholder="Partida">
-        <input type="hora" id="hora1" placeholder="09:20">
-        <BR>
-        <BR>
-        <input type="bucar" id="buscar1">
-        <div class="busc">
-        <input type="bucar" id="buscar2"> <p class="rotasgo">BUSCAR ROTAS </p>
-        </div>
+    <div class="linha">
+      <span class="hora">08:11</span>
+      <span class="hora">08:18</span>
+      <span class="hora">08:27</span>
     </div>
-
-
+    <div class="linha">
+      <span class="hora">08:38</span>
+      <span class="hora">08:52</span>
+      <span class="hora">09:02</span>
     </div>
+    <div class="linha">
+      <span class="hora">09:09</span>
+      <span class="hora">09:17</span>
+      <span class="hora">09:28</span>
+    </div>
+    <div class="linha">
+      <span class="hora">10:11</span>
+      <span class="hora">10:23</span>
+      <span class="hora">10:41</span>
+    </div>
+  </div>
 
+    
+</body>
 </html>

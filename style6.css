@@ -1,7 +1,75 @@
-* {
+*{
     margin: 0%;
-    border: 0%;
 }
+
+nav .flex {
+  display: flex;
+  align-items: center;
+  background-color: rgb(122, 121, 121);
+  padding: 10px;
+  color: white;
+}
+
+nav img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.LOGO1 img {
+  height: 50px;
+  margin-right: 20px;
+}
+
+.bus1, .bus2, .lupa {
+  text-align: center;
+  margin-right: 20px;
+}
+
+.subtexto {
+  font-size: 15px;
+  color: rgb(28, 27, 27);
+}
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /
+  width: 250px;
+  height: 100%;
+  background-color: rgb(239, 232, 232);
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.active {
+  left: 0; /* Exibe a sidebar quando ativa */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 15px 20px;
+}
+
+.sidebar ul li a {
+  color: rgb(33, 31, 31);
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+}
+
+.sidebar ul li a:hover {
+  background-color: #003366;
+  border-radius: 5px;
+}
+
 .flex {
     display: flex;
     border-bottom: 5o ;
@@ -16,7 +84,7 @@ body {
 }
 nav{
     background-color: rgb(122, 121, 121);
-   margin-top: 30px;
+ 
 }
 
 nav img{
