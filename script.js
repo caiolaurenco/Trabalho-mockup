@@ -7,16 +7,15 @@ function removerElementos() {
 
   
   function substituirImagem() {
-    const img = document.getElementById('imagem');
-    const srcAtual = img.getAttribute('src');
-    const imagem1 = 'imagem/notification.png'; 
-    const imagem2 = 'imagem/bell.png'; 
-    if (srcAtual === imagem/notification.png) {
-        img.setAttribute('src', imagem/bell.png);
-    } else {
-        img.setAttribute('src', imagem/notification.png);
-    }
-}
+    const images = document.querySelectorAll('.flex5 img');
+    const images1 = document.querySelectorAll('.flex4 img');
+    images.forEach(img => {
+        img.src = 'imagem/bell.png'; 
+    });
+    images1.forEach(img => {
+        img.src = 'imagem/bell.png'; 
+    });
+  }
 
 document.addEventListener("DOMContentLoaded", function () {
   const menuButton = document.getElementById("menu-button");

@@ -196,3 +196,7 @@ margin-top: 20px;
     font-size: 21px;
 }
 
+.next_bt1 {
+  background-color: transparent;
+ border-color: transparent; 
+}
