@@ -1,3 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #f2f2f2;
+}
+
+.container {
+  max-width: 90%;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+  text-align: center;
+  color: #003366;
+}
+
+.form-busca {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.form-busca input {
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: #eaeaea;
+  font-size: 14px;
+  flex: 1 1 250px;
+}
+
+.form-busca button {
+  padding: 10px 20px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-busca button:hover {
+  background-color: #00509e;
+}
+
+.resultados {
+  margin-top: 30px;
+}
+
+.resultado {
+  background-color: #e4dbdb;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #aaa;
+}
+
+.resultado p {
+  margin: 0;
+  font-size: 14px;
+}
+
 * {
     padding: 0%;
     margin: 0px;
@@ -108,38 +177,3 @@ width: 100px;
 margin: 0%;
 margin-top: 20px;
 }
-
-.ferrorama{
-  margin-bottom: 100px;
-  margin-left: 20px;  
-}
-
-.notificações{
-    background-color: rgb(233, 225, 225) ;
-    border-radius: 35px;
-    text-align: center;
-    max-width: 100%;
-    max-height: 100%;
-    width: 600px;
-    height: 600px;
-    font-weight: bold;
-    font-size: 17px;
-    
-}
-
-.mensagem {
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-
-.mensagem img {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-}
-
-
-
-
-

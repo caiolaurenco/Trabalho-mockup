@@ -1,13 +1,13 @@
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style3.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar</title>
+  <link rel="stylesheet" href="style9.css">
 </head>
-
 <body>
+
     <aside id="sidebar" class="sidebar">
     <ul>
       <li><a href="index.html"><img src="imagem/casa.png" alt="casa">Início</a></li>
@@ -19,6 +19,8 @@
       <li><a href="buscar.html"><img src="imagem/search (1).png" alt="search"> Buscar</a></li>
     </ul>
   </aside>
+
+  
 
   
   <nav>
@@ -48,38 +50,15 @@
 
   <script src="script.js"></script>
 
-    <div class="conteiner">
-        
-        <label id="texto">Acompanhe seu trem <br> em tempo real
-        </label>
-        <label id="texto1">CLIQUE AQUI PARA ACESSAR
-        </label>
-    </div>
+  <div class="container">
+    <h2>Buscar Informações</h2>
 
-    <div class="menu">
-        <h2 class="titulo_menu">ROTAS</h2>
-        <br>
-        <input type="partida" id="partida1" placeholder="PONTO DE PARTIDA">
-        <BR>
-        <BR>
-        <input type="destino" id="destino1" placeholder="Destino">
-        <BR>
-        <BR>
-        <input type="data" id="data1" placeholder="Hoje - 26/05">
-        <BR>
-        <BR>
-        <br>
-        <input type="partida_chegada" id="pc1" placeholder="Partida">
-        <input type="hora" id="hora1" placeholder="09:20">
-        <BR>
-        <BR>
-        <input type="bucar" id="buscar1">
-        <div class="busc">
-        <input type="bucar" id="buscar2"> <p class="rotasgo">BUSCAR ROTAS </p>
-        </div>
-    </div>
+    <form class="form-busca">
+      <input type="text" placeholder="Digite o que deseja buscar..." required>
+      <button type="submit">Buscar</button>
+    </form>
 
+    
 
-    </div>
-
+</body>
 </html>

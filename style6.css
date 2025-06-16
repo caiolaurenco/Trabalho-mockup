@@ -46,7 +46,7 @@ nav img {
 }
 
 .sidebar.active {
-  left: 0; /* Exibe a sidebar quando ativa */
+  left: 0; 
 }
 
 .sidebar ul {
