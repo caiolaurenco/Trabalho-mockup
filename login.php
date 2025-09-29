@@ -26,7 +26,7 @@ session_start();
     <header>
         <div class="proximo">
             <button class="next_bt">
-                <a href="index.html">
+                <a href="index.php">
                     <img class="quadrado" src="imagem/QUADRADO.JPG" alt="sair">
                 </a>
             </button>
