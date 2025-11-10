@@ -8,6 +8,7 @@ create table usuarios (
     cpf varchar(20) not null,
     password varchar(255) not null,
     data_nasc date not null,
-    cargo enum('funcionario','adm') not null    
+    cargo enum('funcionario','administrador') not null    
 );
 
+INSERT INTO usuarios (name, password, email, cpf, data_nasc, cargo) VALUES ('admin','admin123', 'admin@gmail.com', '000.000.000-00', '2000-002-07', 'administrador');
