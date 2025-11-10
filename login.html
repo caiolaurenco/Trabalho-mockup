@@ -1,16 +1,6 @@
-<?php
-include 'db.php';
-session_start();
 
 
-?>
 
-<?php if (isset($_SESSION["user_cargo"]) && $_SESSION["user_cargo"] === 'adm'): ?>
-                <a href="adicionar-funcionario.php">
-                    <img src="../Mockup/images/add-friend-menor.png" alt="Administração de Funcionários">
-                    Administração de Funcionários
-                </a>
-        <?php endif; ?>
 
 <html lang="en">
 
@@ -18,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabalho Mockup</title>
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -26,7 +16,7 @@ session_start();
     <header>
         <div class="proximo">
             <button class="next_bt">
-                <a href="index.php">
+                <a href="index.html">
                     <img class="quadrado" src="imagem/QUADRADO.JPG" alt="sair">
                 </a>
             </button>
