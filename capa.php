@@ -19,7 +19,7 @@ include "db.php";
     </header>
     <div class="next">
         <button class="next_bt">
-            <a href="login.html">
+            <a href="login.php">
                 <img src="imagem/bottom1.JPG" alt="bottom">
             </a>
         </button>

@@ -15,14 +15,14 @@ include "db.php";
 <body class="pessoal-page">
     <aside id="sidebar" class="sidebar">
     <ul>
-     <li><a href="index.html"><img src="imagem/casa.png" alt="casa">Início</a></li>
-      <li><a href="pessoal.html"><img src="imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
-      <li><a href="index.html"><img src="imagem/front-of-bus.png" alt="bus2"> Rotas</a></li>
-      <li><a href="rotas2.html"><img src="imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
-      <li><a href="horario.html"><img src="imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
-      <li><a href="notific.html"><img src="imagem/carta.png" alt="carta">Relatórios</a></li>
-      <li><a href="buscar.html"><img src="imagem/search (1).png" alt="search"> Buscar</a></li>
-      <li><a href="capa.html"><img src="imagem/search (1).png" alt="search"> Sair</a></li>
+     <li><a href="index.php"><img src="imagem/casa.png" alt="casa">Início</a></li>
+      <li><a href="pessoal.php"><img src="imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
+      <li><a href="index.php"><img src="imagem/front-of-bus.png" alt="bus2"> Rotas</a></li>
+      <li><a href="rotas2.php"><img src="imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
+      <li><a href="horario.php"><img src="imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
+      <li><a href="notific.php"><img src="imagem/carta.png" alt="carta">Relatórios</a></li>
+      <li><a href="buscar.php"><img src="imagem/search (1).png" alt="search"> Buscar</a></li>
+      <li><a href="capa.php"><img src="imagem/sair.png" alt="search"> Sair</a></li>
     </ul>
   </aside>
 
