@@ -1,6 +1,8 @@
+<?php
 
+include "db.php";
 
-
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">

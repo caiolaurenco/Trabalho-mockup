@@ -1,4 +1,8 @@
+<?php
 
+include "db.php";
+
+?>
 
 
 <html lang="en">

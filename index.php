@@ -1,15 +1,22 @@
+<?php
+
+include "db.php";
+
+?>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rotas</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="rotas-page">
-<aside id="sidebar" class="sidebar">
+
+<body class="main-page"><body>
+    <aside id="sidebar" class="sidebar">
     <ul>
-    <li><a href="index.html"><img src="imagem/casa.png" alt="casa">Início</a></li>
+       <li><a href="index.html"><img src="imagem/casa.png" alt="casa">Início</a></li>
       <li><a href="pessoal.html"><img src="imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
       <li><a href="index.html"><img src="imagem/front-of-bus.png" alt="bus2"> Rotas</a></li>
       <li><a href="rotas2.html"><img src="imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
@@ -20,7 +27,7 @@
     </ul>
   </aside>
 
-
+  
   <nav>
     <div class="flex">
       <img src="imagem/menu.png" alt="logo-menu" id="menu-button" />
@@ -48,35 +55,38 @@
 
   <script src="script.js"></script>
 
-   <div class="rotas">
-    <p>ROTAS</p>
-   </div>
+    <div class="conteiner">
+        
+        <label id="texto">Acompanhe seu trem <br> em tempo real
+        </label>
+        <label id="texto1">CLIQUE AQUI PARA ACESSAR
+        </label>
+    </div>
 
-   <div>
-
-   <div class="ferrorama">
-    <img src="imagem/Captura de tela 2025-05-26 105546.png" alt="ferrorama">
-   </div>
-
-
-   
-        <div class="notificações">
-            <div class="mensagem">
-            <img src="imagem/danger.png" alt="notificações">
-            <p>Trem A está atrasado!</p>
+    <div class="menu">
+        <h2 class="titulo_menu">ROTAS</h2>
+        <br>
+        <input type="partida" id="partida1" placeholder="PONTO DE PARTIDA">
+        <BR>
+        <BR>
+        <input type="destino" id="destino1" placeholder="Destino">
+        <BR>
+        <BR>
+        <input type="data" id="data1" placeholder="Hoje - 26/05">
+        <BR>
+        <BR>
+        <br>
+        <input type="partida_chegada" id="pc1" placeholder="Partida">
+        <input type="hora" id="hora1" placeholder="09:20">
+        <BR>
+        <BR>
+        <input type="bucar" id="buscar1">
+        <div class="busc">
+        <input type="bucar" id="buscar2"> <p class="rotasgo">BUSCAR ROTAS </p>
         </div>
-            
-            <div class="mensagem">
-            <img src="imagem/warning.png" alt="notificações">
-            <P>Trem B necessita de manutenção!</P>
-            <div>
-       
-            <div class="mensagem">
-            <img src="imagem/warning (1).png" alt="notificações">
-            <P>Trilho da ferrovia 1 para 2 está danificado!</P>
-            <div>
-        </div>
+    </div>
 
-    
-</body>
+
+    </div>
+
 </html>
