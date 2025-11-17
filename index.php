@@ -1,92 +1,189 @@
 <?php
-
 include "db.php";
-
 ?>
 
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sistema Ferroviário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .header img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: none;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: none;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .menu-item:last-child {
+            grid-column: 1 / -1;
+            max-width: 250px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .menu-item {
+            background: #e8e8e8;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+        }
+
+        .menu-item img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            object-fit: contain;
+        }
+
+        .menu-item h3 {
+            font-size: 1em;
+            color:rgb(0, 0, 0);
+            margin-top: 5px;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .menu-container {
+                gap: 15px;
+                max-width: 450px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header img {
+                width: 180px;
+            }
+
+            .menu-item {
+                padding: 20px;
+                min-height: 140px;
+            }
+
+            .menu-item img {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .header img {
+                width: 150px;
+            }
+        }
+    </style>
 </head>
-
-<body class="main-page"><body>
-    <aside id="sidebar" class="sidebar">
-    <ul>
-       <li><a href="index.php"><img src="imagem/casa.png" alt="casa">Início</a></li>
-      <li><a href="pessoal.php"><img src="imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
-      <li><a href="index.php"><img src="imagem/front-of-bus.png" alt="bus2"> Rotas</a></li>
-      <li><a href="rotas2.php"><img src="imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
-      <li><a href="horario.php"><img src="imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
-      <li><a href="notific.php"><img src="imagem/carta.png" alt="carta">Relatórios</a></li>
-      <li><a href="buscar.php"><img src="imagem/search (1).png" alt="search"> Buscar</a></li>
-      <li><a href="capa.php"><img src="imagem/sair.png" alt="search"> Sair</a></li>
-    </ul>
-  </aside>
-
-  
-  <nav>
-    <div class="flex">
-      <img src="imagem/menu.png" alt="logo-menu" id="menu-button" />
-
-      <div class="LOGO1">
-        <img src="imagem/logo1.JPG" alt="LOG" />
-      </div>
-
-      <div class="bus1">
-        <img src="imagem/bus.png" alt="bus1" />
-        <p class="subtexto">MEU LOCAL</p>
-      </div>
-
-      <div class="bus2">
-        <img src="imagem/front-of-bus.png" alt="bus2" />
-        <p class="subtexto">LINHAS</p>
-      </div>
-
-      <div class="lupa">
-        <img src="imagem/search (1).png" alt="lupa" />
-        <p class="subtexto">BUSCAR</p>
-      </div>
-    </div>
-  </nav>
-
-  <script src="script.js"></script>
-
-    <div class="conteiner">
-        
-        <label id="texto">Acompanhe seu trem <br> em tempo real
-        </label>
-        <label id="texto1">CLIQUE AQUI PARA ACESSAR
-        </label>
+<body>
+    <div class="header">
+        <img src="imagem/logo1.JPG" alt="Logo Sistema Ferroviário">
+        <h1>Sistema Ferroviário</h1>
+        <p>Gestão Completa de Operações</p>
     </div>
 
-    <div class="menu">
-        <h2 class="titulo_menu">ROTAS</h2>
-        <br>
-        <input type="partida" id="partida1" placeholder="PONTO DE PARTIDA">
-        <BR>
-        <BR>
-        <input type="destino" id="destino1" placeholder="Destino">
-        <BR>
-        <BR>
-        <input type="data" id="data1" placeholder="Hoje - 26/05">
-        <BR>
-        <BR>
-        <br>
-        <input type="partida_chegada" id="pc1" placeholder="Partida">
-        <input type="hora" id="hora1" placeholder="09:20">
-        <BR>
-        <BR>
-        <input type="bucar" id="buscar1">
-        <div class="busc">
-        <input type="bucar" id="buscar2"> <p class="rotasgo">BUSCAR ROTAS </p>
-        </div>
+    <div class="menu-container">
+        <a href="pessoal.php" class="menu-item">
+            <img src="imagem/msg.png" alt="Informações Pessoais">
+            <h3>Informações<br>Pessoais</h3>
+        </a>
+
+        <a href="rotas2.php" class="menu-item">
+            <img src="imagem/front-of-bus.png" alt="Rotas">
+            <h3>Rotas</h3>
+        </a>
+
+        <a href="rotas2.php" class="menu-item">
+            <img src="imagem/bus.png" alt="Gestão de Rotas">
+            <h3>Gestão de<br>Rotas</h3>
+        </a>
+
+        <a href="horario.php" class="menu-item">
+            <img src="imagem/lugar.png" alt="Quadro de Horários">
+            <h3>Quadro de<br>Horários</h3>
+        </a>
+
+        <a href="notific.php" class="menu-item">
+            <img src="imagem/carta.png" alt="Relatórios">
+            <h3>Relatórios</h3>
+        </a>
+
+        <a href="buscar.php" class="menu-item">
+            <img src="imagem/search (1).png" alt="Buscar">
+            <h3>Buscar</h3>
+        </a>
+
+        <a href="capa.php" class="menu-item">
+            <img src="imagem/sair.png" alt="Sair">
+            <h3>Sair</h3>
+        </a>
     </div>
-
-
-    </div>
-
+</body>
 </html>
