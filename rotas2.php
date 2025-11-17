@@ -57,31 +57,26 @@ include "db.php";
     <p>ROTAS</p>
    </div>
 
-   <div>
-
    <div class="ferrorama">
     <img src="imagem/Captura de tela 2025-05-26 105546.png" alt="ferrorama">
    </div>
 
-
-   
-        <div class="notificações">
-            <div class="mensagem">
+   <div class="notificacoes">
+        <div class="mensagem">
             <img src="imagem/danger.png" alt="notificações">
             <p>Trem A está atrasado!</p>
         </div>
-            
-            <div class="mensagem">
+        
+        <div class="mensagem">
             <img src="imagem/warning.png" alt="notificações">
-            <P>Trem B necessita de manutenção!</P>
-            <div>
-       
-            <div class="mensagem">
-            <img src="imagem/warning (1).png" alt="notificações">
-            <P>Trilho da ferrovia 1 para 2 está danificado!</P>
-            <div>
+            <p>Trem B necessita de manutenção!</p>
         </div>
+   
+        <div class="mensagem">
+            <img src="imagem/warning (1).png" alt="notificações">
+            <p>Trilho da ferrovia 1 para 2 está danificado!</p>
+        </div>
+   </div>
 
-    
 </body>
 </html>

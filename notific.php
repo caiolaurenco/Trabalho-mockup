@@ -93,15 +93,35 @@ include "db.php";
         <img src="imagem/check-box.png" alt="correto">
       </div>
     </button>
-    <button class="next_bt" onclick="removerElementos()">
+    <button class="next_bt" id="toggleNotificBtn" onclick="toggleNotificacoes()">
       <div class="flex7">
-        <p class="botao1">Apagar notificações</p>
-        <img src="imagem/silent.png" alt="correto">
+        <p class="botao1" id="toggleText">Desativar notificações</p>
+        <img src="imagem/silent.png" alt="notificações" id="toggleIcon">
       </div>
     </button>
 
+    <script>
+      function toggleNotificacoes() {
+        const conteudo = document.getElementById('conteudo');
+        const toggleText = document.getElementById('toggleText');
+        const toggleIcon = document.getElementById('toggleIcon');
+        const toggleBtn = document.getElementById('toggleNotificBtn');
+        
+        if (conteudo.style.display === 'none') {
+          // Ativar notificações
+          conteudo.style.display = 'block';
+          toggleText.textContent = 'Desativar notificações';
+          toggleIcon.src = 'imagem/silent.png';
+          toggleIcon.alt = 'notificações';
+        } else {
+          // Desativar notificações
+          conteudo.style.display = 'none';
+          toggleText.textContent = 'Ativar notificações';
+          toggleIcon.src = 'imagem/notification.png';
+          toggleIcon.alt = 'ativar';
+        }
+      }
+    </script>
 
-
-    </div>
-
-    <body>
+</body>
+</html>
