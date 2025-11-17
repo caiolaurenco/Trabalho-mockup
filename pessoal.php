@@ -1,6 +1,29 @@
 <?php
 
-include "db.php";
+require_once('db.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['btnCadastro'])) {
+        $nome = $_POST['nome'] ?? '';
+        $email = $_POST['email'] ?? '';
+
+        if(filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($nome)) {
+            $stmt = $conexao->prepare("INSERT INTO usuarios (nome, email) VALUES (?, ?)");
+            $stmt->bind_param("ss", $nome, $email);
+
+            if($stmt->execute()) {
+                echo "Novo usuário cadastrado com sucesso!";
+            } else {
+                echo "Erro: " . $stmt->error;
+            }
+
+            $stmt->close();
+        } else {
+            echo "Por favor, insira um nome e um e-mail válidos.";
+        }
+    }
+}
+
 
 ?>
 

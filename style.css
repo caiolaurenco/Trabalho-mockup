@@ -232,25 +232,22 @@ nav {
 nav .flex {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end; /* Alinha todos os itens para o lado direito */
     padding: 10px 20px;
     color: white;
+    gap: 40px; /* Espaçamento adequado entre os itens */
+}
+
+nav .LOGO1 {
+    margin-right: auto; /* Mantém o logo/menu à esquerda */
+    display: flex;
+    align-items: center;
 }
 
 nav img {
     width: 40px;
     height: auto;
     cursor: pointer;
-}
-
-nav .LOGO1 {
-    display: flex;
-    align-items: center;
-}
-
-nav .LOGO1 img {
-    height: 50px;
-    width: auto;
 }
 
 nav .bus1,
@@ -849,5 +846,20 @@ nav .subtexto {
     .sidebar {
         width: 200px;
         left: -200px;
+    }
+}
+
+#menu-button {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 100;
+}
+
+/* Adiciona responsividade para telas menores */
+@media (max-width: 768px) {
+    #menu-button {
+        left: 10px;
+        top: 10px;
     }
 }

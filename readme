@@ -1,0 +1,35 @@
+# Trabalho Mockup 
+
+Este projeto é um sistema web desenvolvido em PHP que simula funcionalidades de um sistema de gerenciamento de horários, notificações, login e verificação de e-mail. Abaixo estão as principais funcionalidades implementadas:
+
+## Funcionalidades
+
+- **Verificação de E-mail**: Utiliza a API Abstract para verificar a validade de e-mails informados pelo usuário (`api.php`).
+- **Login de Usuário**: Permite autenticação de usuários no sistema (`login.php`).
+- **Busca de Informações**: Implementa buscas específicas conforme a necessidade do sistema (`buscar.php`).
+- **Gerenciamento de Horários**: Permite visualizar e manipular horários cadastrados (`horario.php`).
+- **Notificações**: Sistema para envio e exibição de notificações aos usuários (`notific.php`).
+- **Banco de Dados**: Estrutura de banco de dados SQL para armazenar informações relevantes do sistema (`db.sql`, `db.php`).
+- **Interface Web**: Páginas web com layout responsivo e imagens ilustrativas para melhor experiência do usuário (`index.php`, `capa.php`, `style.css`, pasta `imagem/`).
+- **Scripts de Interação**: Utilização de JavaScript para melhorar a interatividade da interface (`script.js`).
+
+## Estrutura de Pastas
+- `api.php`: Verificação de e-mail via API.
+- `login.php`: Autenticação de usuários.
+- `buscar.php`: Funcionalidades de busca.
+- `horario.php`: Gerenciamento de horários.
+- `notific.php`: Notificações do sistema.
+- `db.php` e `db.sql`: Conexão e estrutura do banco de dados.
+- `index.php`, `capa.php`, `pessoal.php`, `rotas2.php`: Páginas principais do sistema.
+- `style.css`: Estilos visuais do site.
+- `script.js`: Scripts de interação.
+- `imagem/`: Imagens utilizadas na interface.
+
+## Observações
+- O sistema utiliza PHP puro e MySQL para persistência de dados.
+- As imagens e o layout foram pensados para simular um ambiente real de uso.
+- O código está organizado para facilitar futuras manutenções e expansões.
+
+---
+
+Caso precise de instruções específicas de uso ou instalação, entre em contato ou consulte os arquivos do projeto.
