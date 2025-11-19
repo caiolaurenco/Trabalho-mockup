@@ -174,8 +174,10 @@ include "db.php";
             </select>
             
             <label for="data-input">Data:</label>
+            <br>
             <input type="date" id="data-input" value="<?php echo date('Y-m-d'); ?>">
-            
+            <div class="spacer" style="width: 5px;">
+            </div>
             <label for="linha-select">Linha:</label>
             <select id="linha-select">
                 <option value="todas">Todas as Linhas</option>
