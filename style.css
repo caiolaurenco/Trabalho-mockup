@@ -232,22 +232,32 @@ nav {
 nav .flex {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Alinha todos os itens para o lado direito */
+    justify-content: flex-end;
     padding: 10px 20px;
     color: white;
-    gap: 40px; /* Espaçamento adequado entre os itens */
+    gap: 40px;
+    position: relative;
 }
 
 nav .LOGO1 {
-    margin-right: auto; /* Mantém o logo/menu à esquerda */
+    margin-right: auto;
     display: flex;
     align-items: center;
+    margin-left: 70px; /* Espaço para o botão do menu */
 }
 
-nav img {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
+nav .LOGO1 img {
+    width: 120px !important; /* Aumenta o tamanho do logo */
+    height: auto !important;
+}
+
+nav #menu-button {
+    width: 40px !important;
+    height: 40px !important;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 nav .bus1,
@@ -816,6 +826,18 @@ nav .subtexto {
         gap: 10px;
     }
 
+    nav .LOGO1 {
+        margin-left: 60px; /* Ajusta para telas menores */
+    }
+
+    nav .LOGO1 img {
+        width: 100px !important; /* Reduz um pouco em telas menores */
+    }
+
+    nav #menu-button {
+        left: 10px;
+    }
+
     .main-page #texto {
         font-size: 22px;
     }
@@ -846,20 +868,5 @@ nav .subtexto {
     .sidebar {
         width: 200px;
         left: -200px;
-    }
-}
-
-#menu-button {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    z-index: 100;
-}
-
-/* Adiciona responsividade para telas menores */
-@media (max-width: 768px) {
-    #menu-button {
-        left: 10px;
-        top: 10px;
     }
 }

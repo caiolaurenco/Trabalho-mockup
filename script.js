@@ -1,22 +1,4 @@
-function removerElementos() {
-    const conteudo = document.getElementById("conteudo");
-    if (conteudo) {
-      conteudo.remove(); 
-    }
-  } 
-
-  
-  function substituirImagem() {
-    const images = document.querySelectorAll('.flex5 img');
-    const images1 = document.querySelectorAll('.flex4 img');
-    images.forEach(img => {
-        img.src = 'imagem/bell.png'; 
-    });
-    images1.forEach(img => {
-        img.src = 'imagem/bell.png'; 
-    });
-  }
-  
+// Funções de notificações
 function removerElementos() {
   const conteudo = document.getElementById("conteudo");
   if (conteudo) conteudo.remove();
@@ -27,7 +9,7 @@ function substituirImagem() {
   images.forEach(img => img.src = 'imagem/bell.png');
 }
 
-
+// Validação de email
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -38,10 +20,12 @@ function createElementFromHTML(htmlString) {
   return div.firstChild;
 }
 
-
+// DOMContentLoaded principal
 document.addEventListener("DOMContentLoaded", function () {
+  // Menu lateral (sidebar)
   const menuButton = document.getElementById("menu-button");
   const sidebar = document.getElementById("sidebar");
+  
   if (menuButton && sidebar) {
     menuButton.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -53,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     sidebar.addEventListener("click", (e) => e.stopPropagation());
   }
 
+  // Sistema de busca
   const buscarForm = document.querySelector('.form-busca');
   if (buscarForm) {
     let resultados = document.querySelector('.resultados-busca');
@@ -81,9 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Sistema de usuários
   const userForm = document.querySelector('.formulario');
   const usuariosContainer = document.querySelector('.lista-usuarios');
-
   const USERS_KEY = 'mockup_users_v1';
 
   function loadUsers() {
@@ -145,13 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
       saveUsers(users);
       renderUsers();
 
-    
       if (nameInput) nameInput.value = '';
       if (emailInput) emailInput.value = '';
       if (select) select.selectedIndex = 0;
     });
   }
 
+  // Modal de busca
   const buscarBtn = document.getElementById('buscar2') || document.getElementById('buscar1');
   if (buscarBtn) {
     buscarBtn.style.cursor = 'pointer';
@@ -170,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <p><strong>Data:</strong> ${data || '—'}</p>
         <p><strong>Partida/Chegada:</strong> ${partidaChegada || '—'}</p>
         <p><strong>Hora aproximada:</strong> ${hora || '—'}</p>
-        <p>Resultados fictícios — integre com backend para rotas reais.</p>
+        <p>Resultados fictícios – integre com backend para rotas reais.</p>
       `;
       showModal(content);
     });
@@ -200,4 +185,153 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(overlay);
   }
 
+  // ===== EFEITOS HOVER PARA OS CARDS DO INDEX =====
+  const menuItems = document.querySelectorAll('.menu-item');
+  
+  // Função para aplicar efeito hover
+  function applyHoverEffect(item) {
+    // Zoom e elevação
+    item.style.transform = 'translateY(-8px) scale(1.05)';
+    item.style.transition = 'all 0.3s ease';
+    
+    // Cria overlay escuro se não existir
+    if (!item.querySelector('.hover-overlay')) {
+      const overlay = document.createElement('div');
+      overlay.className = 'hover-overlay';
+      overlay.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      `;
+      item.appendChild(overlay);
+    }
+    
+    // Efeito na imagem
+    const img = item.querySelector('img');
+    if (img) {
+      img.style.transform = 'scale(1.1)';
+      img.style.transition = 'transform 0.3s ease';
+    }
+    
+    // Efeito no texto
+    const h3 = item.querySelector('h3');
+    if (h3) {
+      h3.style.transform = 'scale(1.02)';
+      h3.style.transition = 'transform 0.3s ease';
+    }
+  }
+  
+  // Função para remover efeito hover
+  function removeHoverEffect(item) {
+    // Remove zoom e elevação
+    item.style.transform = 'translateY(0) scale(1)';
+    
+    // Remove overlay com fade out
+    const overlay = item.querySelector('.hover-overlay');
+    if (overlay) {
+      overlay.style.opacity = '0';
+      setTimeout(() => {
+        if (overlay.parentNode) {
+          overlay.remove();
+        }
+      }, 300);
+    }
+    
+    // Remove efeito da imagem
+    const img = item.querySelector('img');
+    if (img) {
+      img.style.transform = 'scale(1)';
+    }
+    
+    // Remove efeito do texto
+    const h3 = item.querySelector('h3');
+    if (h3) {
+      h3.style.transform = 'scale(1)';
+    }
+  }
+  
+  menuItems.forEach(item => {
+    // Eventos para desktop (mouse)
+    item.addEventListener('mouseenter', function() {
+      applyHoverEffect(this);
+    });
+    
+    item.addEventListener('mouseleave', function() {
+      removeHoverEffect(this);
+    });
+    
+    // Eventos para mobile (toque)
+    item.addEventListener('touchstart', function(e) {
+      // Remove efeito de todos os outros cards
+      menuItems.forEach(otherItem => {
+        if (otherItem !== this) {
+          removeHoverEffect(otherItem);
+        }
+      });
+      applyHoverEffect(this);
+    });
+    
+    // Quando toca fora, remove o efeito
+    item.addEventListener('touchend', function() {
+      setTimeout(() => {
+        removeHoverEffect(this);
+      }, 200);
+    });
+  });
+  
+  // Remove efeito ao tocar em qualquer lugar da tela
+  document.addEventListener('touchstart', function(e) {
+    if (!e.target.closest('.menu-item')) {
+      menuItems.forEach(item => {
+        removeHoverEffect(item);
+      });
+    }
+  });
+});
+
+// Animação suave para links âncora
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Validação de formulários
+const forms = document.querySelectorAll('form');
+forms.forEach(form => {
+  form.addEventListener('submit', (e) => {
+    const inputs = form.querySelectorAll('input[required]');
+    let isValid = true;
+    
+    inputs.forEach(input => {
+      if (!input.value.trim()) {
+        isValid = false;
+        input.style.borderColor = 'red';
+        
+        setTimeout(() => {
+          input.style.borderColor = '';
+        }, 2000);
+      }
+    });
+    
+    if (!isValid) {
+      e.preventDefault();
+      alert('Por favor, preencha todos os campos obrigatórios.');
+    }
+  });
 });

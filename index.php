@@ -81,11 +81,12 @@ include "db.php";
             align-items: center;
             justify-content: center;
             min-height: 160px;
+            position: relative;
+            overflow: hidden;
         }
 
         .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         .menu-item img {
@@ -93,13 +94,19 @@ include "db.php";
             height: 50px;
             margin-bottom: 10px;
             object-fit: contain;
+            transition: transform 0.3s ease;
+            z-index: 2;
+            position: relative;
         }
 
         .menu-item h3 {
             font-size: 1em;
-            color:rgb(0, 0, 0);
+            color: rgb(0, 0, 0);
             margin-top: 5px;
             line-height: 1.3;
+            z-index: 2;
+            position: relative;
+            transition: transform 0.3s ease;
         }
 
         @media (max-width: 768px) {
@@ -185,5 +192,7 @@ include "db.php";
             <h3>Sair</h3>
         </a>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
