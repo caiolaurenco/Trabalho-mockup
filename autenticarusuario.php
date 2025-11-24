@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-include _DIR_ . '/db.php';
+include __DIR__ . '/db.php';
 
 session_start();
 
@@ -21,9 +21,11 @@ if ($email === '' || $password === '') {
 }
 
 try {
-    $stmt = $conn->prepare('SELECT id, name, password, email, cargo FROM usuarios WHERE email = :email LIMIT 1');
-    $stmt->execute([':email' => $email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt = $mysqli->prepare('SELECT id, name, password, email, cargo FROM usuarios WHERE email = ? LIMIT 1');
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
     if (!$user) {
         http_response_code(401);
@@ -39,8 +41,9 @@ try {
     } elseif ($hash === $password) {
         $ok = true;
         $newHash = password_hash($password, PASSWORD_DEFAULT);
-        $u = $conn->prepare('UPDATE usuarios SET password = :p WHERE id = :id');
-        $u->execute([':p' => $newHash, ':id' => $user['id']]);
+        $u = $mysqli->prepare('UPDATE usuarios SET password = ? WHERE id = ?');
+        $u->bind_param('si', $newHash, $user['id']);
+        $u->execute();
     }
 
     if (!$ok) {
@@ -59,10 +62,9 @@ try {
     echo json_encode(['success' => true, 'message' => 'Autenticado com sucesso.', 'user' => $_SESSION['user']]);
     exit;
 
-} catch (PDOException $e) {
+} catch (Exception $e) {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Erro no servidor.', 'error' => $e->getMessage()]);
     exit;
 }
-
 ?>
