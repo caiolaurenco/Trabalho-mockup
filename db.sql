@@ -1,14 +1,22 @@
-create database mockup_db;
-use mockup_db;
+CREATE DATABASE IF NOT EXISTS mockup_db;
+USE mockup_db;
 
-create table usuarios (
-    id int primary key auto_increment,
-    name varchar(120) not null,
-    email varchar(120) not null,
-    cpf varchar(20) not null,
-    password varchar(255) not null,
-    data_nasc date not null,
-    cargo enum('funcionario','administrador') not null    
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(120) NOT NULL,
+    email VARCHAR(120) NOT NULL UNIQUE,
+    cpf VARCHAR(20) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    data_nasc DATE NOT NULL,
+    cargo ENUM('funcionario','administrador') NOT NULL DEFAULT 'funcionario',
+    ultimo_acesso DATETIME NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_email (email),
+    INDEX idx_cargo (cargo)
 );
 
-INSERT INTO usuarios (name, password, email, cpf, data_nasc, cargo) VALUES ('admin','admin123', 'admin@gmail.com', '000.000.000-00', '2000-002-07', 'administrador');
+-- Inserir usuário administrador padrão
+-- Senha: admin123
+INSERT INTO usuarios (name, password, email, cpf, data_nasc, cargo) 
+VALUES ('Administrador', 'admin123', 'admin@gmail.com', '000.000.000-00', '2000-02-07', 'administrador')
+ON DUPLICATE KEY UPDATE name = name;
