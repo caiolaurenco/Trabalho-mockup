@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "../php/db.php";
 ?>
 
 <!DOCTYPE html>
@@ -554,7 +554,7 @@ include "db.php";
             formData.append('email', email);
             formData.append('password', password);
 
-            fetch('autenticarusuario.php', {
+            fetch('../php/autenticarusuario.php', {
                 method: 'POST',
                 body: formData
             })
