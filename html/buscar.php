@@ -37,15 +37,7 @@ include "../php/db.php";
         <img src="../imagem/logo1.JPG" alt="LOG" />
       </div>
 
-      <div class="bus1">
-        <img src="../imagem/bus.png" alt="bus1" />
-        <p class="subtexto">MEU LOCAL</p>
-      </div>
-
-      <div class="bus2">
-        <img src="../imagem/front-of-bus.png" alt="bus2" />
-        <p class="subtexto">LINHAS</p>
-      </div>
+     
 
       <div class="lupa">
         <img src="../imagem/search (1).png" alt="lupa" />
