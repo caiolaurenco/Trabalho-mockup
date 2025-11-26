@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "../php/db.php";
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ include "db.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quadro de Horários</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Css/style.css">
     <style>
         .horario-container {
             max-width: 1200px;
@@ -120,37 +120,37 @@ include "db.php";
 <body class="horario-page">
     <aside id="sidebar" class="sidebar">
         <ul>
-            <li><a href="index.php"><img src="imagem/casa.png" alt="casa">Início</a></li>
-            <li><a href="pessoal.php"><img src="imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
-            <li><a href="index.php"><img src="imagem/front-of-bus.png" alt="bus2"> Rotas</a></li>
-            <li><a href="rotas2.php"><img src="imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
-            <li><a href="horario.php"><img src="imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
-            <li><a href="notific.php"><img src="imagem/carta.png" alt="carta">Relatórios</a></li>
-            <li><a href="buscar.php"><img src="imagem/search (1).png" alt="search"> Buscar</a></li>
-            <li><a href="capa.php"><img src="imagem/sair.png" alt="sair"> Sair</a></li>
+            <li><a href="index.php"><img src="../imagem/casa.png" alt="casa">Início</a></li>
+            <li><a href="pessoal.php"><img src="../imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
+            <li><a href="index.php"><img src="../imagem/front-of-bus.png" alt="bus2"> Rotas</a></li>
+            <li><a href="rotas2.php"><img src="../imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
+            <li><a href="horario.php"><img src="../imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
+            <li><a href="notific.php"><img src="../imagem/carta.png" alt="carta">Relatórios</a></li>
+            <li><a href="buscar.php"><img src="../imagem/search (1).png" alt="search"> Buscar</a></li>
+            <li><a href="capa.php"><img src="../imagem/sair.png" alt="sair"> Sair</a></li>
         </ul>
     </aside>
     
     <nav>
         <div class="flex">
-            <img src="imagem/menu.png" alt="logo-menu" id="menu-button" />
+            <img src="../imagem/menu.png" alt="logo-menu" id="menu-button" />
             
             <div class="LOGO1">
-                <img src="imagem/logo1.JPG" alt="LOG" />
+                <img src="../imagem/logo1.JPG" alt="LOG" />
             </div>
             
             <div class="bus1">
-                <img src="imagem/bus.png" alt="bus1" />
+                <img src="../imagem/bus.png" alt="bus1" />
                 <p class="subtexto">MEU LOCAL</p>
             </div>
             
             <div class="bus2">
-                <img src="imagem/front-of-bus.png" alt="bus2" />
+                <img src="../imagem/front-of-bus.png" alt="bus2" />
                 <p class="subtexto">LINHAS</p>
             </div>
             
             <div class="lupa">
-                <img src="imagem/search (1).png" alt="lupa" />
+                <img src="../imagem/search (1).png" alt="lupa" />
                 <p class="subtexto">BUSCAR</p>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "../php/db.php";
 ?>
 
 <!DOCTYPE html>
@@ -151,48 +151,48 @@ include "db.php";
 </head>
 <body>
     <div class="header">
-        <img src="imagem/logo1.JPG" alt="Logo Sistema Ferroviário">
+        <img src="../imagem/logo1.JPG" alt="Logo Sistema Ferroviário">
         <h1>Sistema Ferroviário</h1>
         <p>Gestão Completa de Operações</p>
     </div>
 
     <div class="menu-container">
         <a href="pessoal.php" class="menu-item">
-            <img src="imagem/msg.png" alt="Informações Pessoais">
+            <img src="../imagem/msg.png" alt="Informações Pessoais">
             <h3>Informações<br>Pessoais</h3>
         </a>
 
         <a href="rotas2.php" class="menu-item">
-            <img src="imagem/front-of-bus.png" alt="Rotas">
+            <img src="../imagem/front-of-bus.png" alt="Rotas">
             <h3>Rotas</h3>
         </a>
 
         <a href="rotas2.php" class="menu-item">
-            <img src="imagem/bus.png" alt="Gestão de Rotas">
+            <img src="../imagem/bus.png" alt="Gestão de Rotas">
             <h3>Gestão de<br>Rotas</h3>
         </a>
 
         <a href="horario.php" class="menu-item">
-            <img src="imagem/lugar.png" alt="Quadro de Horários">
+            <img src="../imagem/lugar.png" alt="Quadro de Horários">
             <h3>Quadro de<br>Horários</h3>
         </a>
 
         <a href="notific.php" class="menu-item">
-            <img src="imagem/carta.png" alt="Relatórios">
+            <img src="../imagem/carta.png" alt="Relatórios">
             <h3>Relatórios</h3>
         </a>
 
         <a href="buscar.php" class="menu-item">
-            <img src="imagem/search (1).png" alt="Buscar">
+            <img src="../imagem/search (1).png" alt="Buscar">
             <h3>Buscar</h3>
         </a>
 
         <a href="capa.php" class="menu-item">
-            <img src="imagem/sair.png" alt="Sair">
+            <img src="../imagem/sair.png" alt="Sair">
             <h3>Sair</h3>
         </a>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../Js/script.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "../php/db.php";
 ?>
 
 <!DOCTYPE html>
@@ -394,7 +394,7 @@ include "db.php";
     <div class="container">
         <!-- Logo -->
         <div class="logo-container">
-            <img src="imagem/logo1.JPG" alt="Ferrovia Futuro Logo">
+            <img src="../imagem/logo1.JPG" alt="Ferrovia Futuro Logo">
         </div>
 
         <!-- Título -->
