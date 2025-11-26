@@ -7,17 +7,20 @@ header("Content-Type: application/json; charset=utf-8");
 include "db.php";
 $conn = getPDO();
 
+// Lê JSON ou POST
 $raw = file_get_contents("php://input");
 $json = json_decode($raw, true);
 
 $data = array_merge($_POST ?? [], is_array($json) ? $json : []);
 
+// Coleta dados do JSON/POST
 $name       = isset($data["name"]) ? trim($data["name"]) : null;
 $email      = isset($data["email"]) ? trim($data["email"]) : null;
 $cpf        = isset($data["cpf"]) ? trim($data["cpf"]) : null;
 $password   = isset($data["password"]) ? $data["password"] : null;
 $data_nasc  = isset($data["data_nasc"]) ? $data["data_nasc"] : null;
 
+// Campos obrigatórios do banco
 if (!$name || !$email || !$cpf || !$password || !$data_nasc) {
     http_response_code(400);
     echo json_encode([
@@ -27,6 +30,7 @@ if (!$name || !$email || !$cpf || !$password || !$data_nasc) {
     exit;
 }
 
+// Verifica duplicidade de e-mail
 $stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = :email LIMIT 1");
 $stmt->execute([":email" => $email]);
 
@@ -39,8 +43,10 @@ if ($stmt->fetch()) {
     exit;
 }
 
+// Criptografa senha
 $hash = password_hash($password, PASSWORD_DEFAULT);
 
+// Inserção compatível com o banco
 $insert = $conn->prepare("
     INSERT INTO usuarios (name, email, cpf, password, data_nasc)
     VALUES (:name, :email, :cpf, :password, :data_nasc)

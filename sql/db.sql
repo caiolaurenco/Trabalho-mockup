@@ -13,19 +13,9 @@ CREATE TABLE IF NOT EXISTS usuarios (
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_email (email),
     INDEX idx_cargo (cargo)
-
-
-    CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(150) NOT NULL,
-    email VARCHAR(150) NOT NULL UNIQUE,
-    senha VARCHAR(255) NOT NULL,
-    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 );
 
--- Inserir usuário administrador padrão
--- Senha: admin123
+
 INSERT INTO usuarios (name, password, email, cpf, data_nasc, cargo) 
 VALUES ('Administrador', 'admin123', 'admin@gmail.com', '000.000.000-00', '2000-02-07', 'administrador')
 ON DUPLICATE KEY UPDATE name = name;

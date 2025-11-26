@@ -1,9 +1,19 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 header('Content-Type: application/json; charset=utf-8');
 
+include "db.php"; // garante que getPDO() está disponível
 
-include "db.php";
+try {
+    $conn = getPDO(); // PDO pronto
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Erro ao conectar ao banco.', 'error' => $e->getMessage()]);
+    exit;
+}
 
+// Captura parâmetros: aceita form-urlencoded/multipart ou JSON
 $raw = file_get_contents('php://input');
 $input = json_decode($raw, true);
 $data = $_POST;
@@ -11,54 +21,35 @@ if ($input && is_array($input)) {
     $data = array_merge($data, $input);
 }
 
-$name = isset($data['name']) ? trim($data['name']) : '';
-$email = isset($data['email']) ? trim($data['email']) : '';
-$password = isset($data['password']) ? $data['password'] : '';
-$cpf = isset($data['cpf']) ? trim($data['cpf']) : '';
-$data_nasc = isset($data['data_nasc']) ? trim($data['data_nasc']) : null;
-$cargo = isset($data['cargo']) ? trim($data['cargo']) : 'funcionario';
+// Ajuste os nomes abaixo conforme o form que você tem na página (name="nome", "email", "senha")
+$nome = isset($data['nome']) ? trim($data['nome']) : null;
+$email = isset($data['email']) ? trim($data['email']) : null;
+$senha = isset($data['senha']) ? $data['senha'] : null;
 
-$errors = [];
-if ($name === '') $errors[] = 'Nome é obrigatório.';
-if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'E-mail inválido.';
-if ($password === '' || strlen($password) < 4) $errors[] = 'Senha inválida (mínimo 4 caracteres).';
-
-if (count($errors) > 0) {
+if (!$nome || !$email || !$senha) {
     http_response_code(400);
-    echo json_encode(['success' => false, 'errors' => $errors]);
+    echo json_encode(['success' => false, 'message' => 'Dados incompletos.']);
     exit;
 }
 
-try {
-    $stmt = $conn->prepare('SELECT id FROM usuarios WHERE email = :email LIMIT 1');
-    $stmt->execute([':email' => $email]);
-    if ($stmt->fetch()) {
-        http_response_code(409);
-        echo json_encode(['success' => false, 'message' => 'E-mail já cadastrado.']);
-        exit;
-    }
-
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-
-    $insert = $conn->prepare('INSERT INTO usuarios (name, password, email, cpf, data_nasc, cargo) VALUES (:name, :password, :email, :cpf, :data_nasc, :cargo)');
-    $insert->execute([
-        ':name' => $name,
-        ':password' => $hash,
-        ':email' => $email,
-        ':cpf' => $cpf,
-        ':data_nasc' => $data_nasc,
-        ':cargo' => $cargo
-    ]);
-
-    $id = $conn->lastInsertId();
-    http_response_code(201);
-    echo json_encode(['success' => true, 'message' => 'Usuário criado com sucesso.', 'id' => $id]);
+// Verifica se email já existe (opcional)
+$stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = :email LIMIT 1");
+$stmt->execute([':email' => $email]);
+if ($stmt->fetch()) {
+    http_response_code(409);
+    echo json_encode(['success' => false, 'message' => 'Email já cadastrado.']);
     exit;
+}
 
+// Hash da senha
+$hash = password_hash($senha, PASSWORD_DEFAULT);
+
+// Insere no banco (ajuste colunas conforme sua tabela)
+$insert = $conn->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)");
+try {
+    $insert->execute([':nome' => $nome, ':email' => $email, ':senha' => $hash]);
+    echo json_encode(['success' => true, 'message' => 'Usuário cadastrado com sucesso.']);
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Erro no servidor.', 'error' => $e->getMessage()]);
-    exit;
+    echo json_encode(['success' => false, 'message' => 'Erro ao inserir usuário.', 'error' => $e->getMessage()]);
 }
-
-?>
