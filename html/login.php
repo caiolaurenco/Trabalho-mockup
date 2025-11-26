@@ -506,7 +506,7 @@ include "../php/db.php";
 
         <!-- Footer -->
         <div class="login-footer">
-            <img src="../imagem/logo1.png" alt="Ferrovia Futuro">
+            <img src="../imagem/logo1.JPG" alt="Ferrovia Futuro">
         </div>
     </div>
 
