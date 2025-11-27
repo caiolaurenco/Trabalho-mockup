@@ -22,6 +22,44 @@ function createElementFromHTML(htmlString) {
 
 // DOMContentLoaded principal
 document.addEventListener("DOMContentLoaded", function () {
+  // ===== FUNCIONALIDADE DO BOTÃO BUSCAR =====
+  const botaoBuscar = document.querySelector('.lupa');
+  
+  if (botaoBuscar) {
+    // Adicionar cursor pointer
+    botaoBuscar.style.cursor = 'pointer';
+    
+    // Adicionar efeito hover
+    botaoBuscar.addEventListener('mouseenter', function() {
+      this.style.transform = 'scale(1.1)';
+      this.style.transition = 'transform 0.2s ease';
+    });
+    
+    botaoBuscar.addEventListener('mouseleave', function() {
+      this.style.transform = 'scale(1)';
+    });
+    
+    // Adicionar evento de clique
+    botaoBuscar.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Redirecionar para a página de busca
+      window.location.href = 'buscar.php';
+    });
+  }
+  
+  // Também adicionar funcionalidade à imagem da lupa individualmente
+  const imagemLupa = document.querySelector('.lupa img');
+  
+  if (imagemLupa) {
+    imagemLupa.style.cursor = 'pointer';
+    
+    imagemLupa.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.location.href = 'buscar.php';
+    });
+  }
+
   // Menu lateral (sidebar)
   const menuButton = document.getElementById("menu-button");
   const sidebar = document.getElementById("sidebar");

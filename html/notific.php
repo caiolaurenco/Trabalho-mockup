@@ -1,5 +1,6 @@
 <?php
 include "../php/db.php";
+session_start(); // Garantir que a sessão está iniciada
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +40,8 @@ include "../php/db.php";
       position: absolute;
       top: -2px;
       right: -2px;
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background-color: #e74c3c;
       border-radius: 50%;
       border: 2px solid white;
@@ -197,6 +198,81 @@ include "../php/db.php";
   <script>
     let notificacoesAtivas = true;
 
+    // Função para obter ID do usuário
+    function getUserId() {
+      return '<?php echo isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : "guest"; ?>';
+    }
+
+    // Chave única para cada usuário
+    const STORAGE_KEY = `notificacoes_lidas_${getUserId()}`;
+
+    // Função para carregar notificações lidas do localStorage
+    function carregarNotificacoesLidas() {
+      try {
+        const lidas = localStorage.getItem(STORAGE_KEY);
+        return lidas ? JSON.parse(lidas) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    // Função para salvar notificações lidas
+    function salvarNotificacoesLidas(ids) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+      } catch (e) {
+        console.error('Erro ao salvar notificações:', e);
+      }
+    }
+
+    // Função para marcar notificação como lida
+    function marcarNotificacaoLida(id) {
+      const lidas = carregarNotificacoesLidas();
+      if (!lidas.includes(id)) {
+        lidas.push(id);
+        salvarNotificacoesLidas(lidas);
+      }
+    }
+
+    // Função para remover notificações já lidas
+    function removerNotificacoesLidas() {
+      const lidas = carregarNotificacoesLidas();
+      const notificacoes = document.querySelectorAll('.notificacao-item');
+      
+      notificacoes.forEach(notif => {
+        const id = notif.getAttribute('data-id');
+        if (lidas.includes(id)) {
+          notif.remove();
+        }
+      });
+    }
+
+    // Verificar se o usuário mudou e limpar notificações antigas
+    function verificarMudancaUsuario() {
+      const usuarioAtual = getUserId();
+      const usuarioAnterior = localStorage.getItem('ultimo_usuario_logado');
+      
+      // Se mudou de usuário, limpar todas as notificações lidas
+      if (usuarioAnterior && usuarioAnterior !== usuarioAtual) {
+        // Limpar notificações do usuário anterior
+        const chavesParaRemover = [];
+        for (let i = 0; i < localStorage.length; i++) {
+          const chave = localStorage.key(i);
+          if (chave && chave.startsWith('notificacoes_lidas_')) {
+            chavesParaRemover.push(chave);
+          }
+        }
+        
+        // Remover todas as chaves de notificações
+        chavesParaRemover.forEach(chave => {
+          localStorage.removeItem(chave);
+        });
+      }
+      
+      // Salvar usuário atual
+      localStorage.setItem('ultimo_usuario_logado', usuarioAtual);
+    }
+
     // Função para atualizar contador
     function atualizarContador() {
       const notificacoes = document.querySelectorAll('.notificacao-item:not(.removing)');
@@ -240,6 +316,13 @@ include "../php/db.php";
       // Adiciona classe de remoção com delay escalonado
       notificacoes.forEach((notif, index) => {
         setTimeout(() => {
+          const id = notif.getAttribute('data-id');
+          
+          // Marcar como lida no localStorage
+          if (id) {
+            marcarNotificacaoLida(id);
+          }
+          
           // Remove o badge vermelho
           const badge = notif.querySelector('.sininho-badge');
           if (badge) {
@@ -254,7 +337,7 @@ include "../php/db.php";
             notif.remove();
             atualizarContador();
           }, 300);
-        }, index * 100); // Delay de 100ms entre cada notificação
+        }, index * 100);
       });
     }
 
@@ -265,7 +348,6 @@ include "../php/db.php";
       const toggleIcon = document.getElementById('toggleIcon');
 
       if (notificacoesAtivas) {
-        // Desativar notificações
         conteudo.style.display = 'none';
         toggleText.textContent = 'Ativar notificações';
         toggleIcon.src = '../imagem/notification.png';
@@ -273,7 +355,6 @@ include "../php/db.php";
         notificacoesAtivas = false;
         document.getElementById('contadorNotificacoes').style.display = 'none';
       } else {
-        // Ativar notificações
         conteudo.style.display = 'block';
         toggleText.textContent = 'Desativar notificações';
         toggleIcon.src = '../imagem/silent.png';
@@ -285,11 +366,24 @@ include "../php/db.php";
 
     // Adicionar funcionalidade de clique individual em cada notificação
     document.addEventListener('DOMContentLoaded', function() {
+      // Verificar mudança de usuário primeiro
+      verificarMudancaUsuario();
+      
+      // Remover notificações já lidas ao carregar a página
+      removerNotificacoesLidas();
+      
       const notificacoes = document.querySelectorAll('.notificacao-item');
       
       notificacoes.forEach(notif => {
         notif.addEventListener('click', function() {
           if (!this.classList.contains('removing')) {
+            const id = this.getAttribute('data-id');
+            
+            // Marcar como lida no localStorage
+            if (id) {
+              marcarNotificacaoLida(id);
+            }
+            
             // Remove o badge vermelho
             const badge = this.querySelector('.sininho-badge');
             if (badge) {
