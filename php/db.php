@@ -6,12 +6,6 @@ $DB_USER = "root";
 $DB_PASS = "root";
 $DB_CHARSET = "utf8mb4";
 
-// MySQLi (opcional)
-$mysqli = @new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
-if ($mysqli->connect_error) {
-    die("Erro MySQLi: " . $mysqli->connect_error);
-}
-$mysqli->set_charset($DB_CHARSET);
 
 
 // --- FUNÇÃO PDO ---
