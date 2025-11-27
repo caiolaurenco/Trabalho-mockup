@@ -408,6 +408,60 @@ session_start(); // Garantir que a sessão está iniciada
       // Inicializar contador
       atualizarContador();
     });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const logo = document.querySelector('nav .LOGO1 img');
+    
+    if (logo) {
+        logo.style.cursor = 'pointer';
+        
+        logo.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.08)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        
+        logo.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+        
+        logo.addEventListener('click', function() {
+            window.location.href = 'index.php';
+        });
+
+        logo.setAttribute('tabindex', '0');
+        logo.setAttribute('role', 'button');
+        logo.setAttribute('aria-label', 'Voltar para página inicial');
+        
+        logo.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.location.href = 'index.php';
+            }
+        });
+    }
+    
+    const logoContainer = document.querySelector('nav .LOGO1');
+    
+    if (logoContainer && !logoContainer.querySelector('a')) {
+        logoContainer.style.cursor = 'pointer';
+        
+        logoContainer.addEventListener('click', function() {
+            window.location.href = 'index.php';
+        });
+    }
+});
+
+function tornarLogoClicavel() {
+    const logo = document.querySelector('nav .LOGO1 img');
+    
+    if (logo) {
+        logo.style.cursor = 'pointer';
+        logo.onclick = function() {
+            window.location.href = 'index.php';
+        };
+    }
+}
+
   </script>
 
 </body>
