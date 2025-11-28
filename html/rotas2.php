@@ -186,7 +186,6 @@ include "../php/db.php";
             color: #e67e22;
         }
 
-        /* Modal de Sensores */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -410,7 +409,6 @@ include "../php/db.php";
             <h1>Gestão de Rotas IoT</h1>
         </div>
 
-      
         <div class="connection-status" id="connectionStatus">
             <span class="status-indicator status-offline" id="statusIndicator"></span>
             <span id="statusText">Conectando ao servidor MQTT...</span>
@@ -422,7 +420,6 @@ include "../php/db.php";
         </div>
 
         <div class="alertas-grid">
-            <!-- Alerta Sensor 1 -->
             <div class="alerta-card" onclick="abrirModal('sensor1')">
                 <div class="alerta-header">
                     <div class="alerta-icon">⚠️</div>
@@ -437,7 +434,6 @@ include "../php/db.php";
                 </p>
             </div>
 
-            <!-- Alerta Sensor 2 -->
             <div class="alerta-card" onclick="abrirModal('sensor2')">
                 <div class="alerta-header">
                     <div class="alerta-icon">⚡</div>
@@ -452,7 +448,6 @@ include "../php/db.php";
                 </p>
             </div>
 
-            <!-- Alerta Sensor 3 -->
             <div class="alerta-card" onclick="abrirModal('sensor3')">
                 <div class="alerta-header">
                     <div class="alerta-icon">🔧</div>
@@ -469,7 +464,6 @@ include "../php/db.php";
         </div>
     </div>
 
-    <!-- Modal Sensor 1 -->
     <div class="modal-overlay" id="modalSensor1">
         <div class="modal-content">
             <div class="modal-header">
@@ -508,7 +502,6 @@ include "../php/db.php";
         </div>
     </div>
 
-    <!-- Modal Sensor 2 -->
     <div class="modal-overlay" id="modalSensor2">
         <div class="modal-content">
             <div class="modal-header">
@@ -546,7 +539,6 @@ include "../php/db.php";
         </div>
     </div>
 
-    <!-- Modal Sensor 3 -->
     <div class="modal-overlay" id="modalSensor3">
         <div class="modal-content">
             <div class="modal-header">
@@ -587,11 +579,9 @@ include "../php/db.php";
 
     <script src="../Js/script.js"></script>
     <script>
-        // Configuração MQTT
         const BROKER = 'wss://broker.hivemq.com:8884/mqtt';
         let client;
         
-        // Dados dos sensores
         const sensorData = {
             s1: {
                 temperatura: '--',
@@ -613,7 +603,6 @@ include "../php/db.php";
             }
         };
 
-        // Conectar ao MQTT
         function conectarMQTT() {
             client = mqtt.connect(BROKER);
 
@@ -621,18 +610,15 @@ include "../php/db.php";
                 console.log('✅ Conectado ao HiveMQ');
                 atualizarStatus(true);
                 
-                // Subscrever aos tópicos do Sensor 1
                 client.subscribe('s1/temperatura');
                 client.subscribe('s1/distancia');
                 client.subscribe('s1/umidade');
                 client.subscribe('s1/iluminacao');
                 
-                // Subscrever aos tópicos do Sensor 2
                 client.subscribe('s2/sensor1');
                 client.subscribe('s2/sensor2');
                 client.subscribe('s2/status');
                 
-                // Subscrever aos tópicos do Sensor 3
                 client.subscribe('s3/distancia');
                 client.subscribe('s3/servo1');
                 client.subscribe('s3/servo2');
@@ -643,7 +629,6 @@ include "../php/db.php";
                 const valor = message.toString();
                 console.log(`Recebido: ${topic} = ${valor}`);
                 
-                // Processar mensagens do Sensor 1
                 if (topic === 's1/temperatura') {
                     sensorData.s1.temperatura = parseFloat(valor).toFixed(1);
                     atualizarDisplay('s1_temperatura', sensorData.s1.temperatura);
@@ -658,7 +643,6 @@ include "../php/db.php";
                     atualizarDisplay('s1_iluminacao', sensorData.s1.iluminacao);
                 }
                 
-                // Processar mensagens do Sensor 2
                 else if (topic === 's2/sensor1') {
                     sensorData.s2.sensor1 = valor;
                     atualizarDisplay('s2_sensor1', sensorData.s2.sensor1);
@@ -670,7 +654,6 @@ include "../php/db.php";
                     atualizarDisplay('s2_status', sensorData.s2.status);
                 }
                 
-                // Processar mensagens do Sensor 3
                 else if (topic === 's3/distancia') {
                     sensorData.s3.distancia = valor;
                     atualizarDisplay('s3_distancia', sensorData.s3.distancia);
@@ -694,7 +677,6 @@ include "../php/db.php";
             client.on('close', () => {
                 console.log('❌ Desconectado do MQTT');
                 atualizarStatus(false);
-                // Tentar reconectar após 5 segundos
                 setTimeout(conectarMQTT, 5000);
             });
         }
@@ -719,7 +701,6 @@ include "../php/db.php";
             const elemento = document.getElementById(elementId);
             if (elemento) {
                 elemento.textContent = valor;
-                // Animação de atualização
                 elemento.style.color = '#27ae60';
                 setTimeout(() => {
                     elemento.style.color = '#2c3e50';
@@ -737,7 +718,6 @@ include "../php/db.php";
             modal.classList.remove('active');
         }
 
-        // Fechar modal ao clicar fora
         document.querySelectorAll('.modal-overlay').forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
@@ -746,65 +726,62 @@ include "../php/db.php";
             });
         });
 
-        // Iniciar conexão MQTT ao carregar a página
         document.addEventListener('DOMContentLoaded', () => {
             conectarMQTT();
         });
 
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.querySelector('nav .LOGO1 img');
+            
+            if (logo) {
+                logo.style.cursor = 'pointer';
+                
+                logo.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.08)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                logo.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+                
+                logo.addEventListener('click', function() {
+                    window.location.href = 'index.php';
+                });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const logo = document.querySelector('nav .LOGO1 img');
-    
-    if (logo) {
-        logo.style.cursor = 'pointer';
-        
-        logo.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.08)';
-            this.style.transition = 'transform 0.3s ease';
-        });
-        
-        logo.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-        
-        logo.addEventListener('click', function() {
-            window.location.href = 'index.php';
-        });
-
-        logo.setAttribute('tabindex', '0');
-        logo.setAttribute('role', 'button');
-        logo.setAttribute('aria-label', 'Voltar para página inicial');
-        
-        logo.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                window.location.href = 'index.php';
+                logo.setAttribute('tabindex', '0');
+                logo.setAttribute('role', 'button');
+                logo.setAttribute('aria-label', 'Voltar para página inicial');
+                
+                logo.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        window.location.href = 'index.php';
+                    }
+                });
+            }
+            
+            const logoContainer = document.querySelector('nav .LOGO1');
+            
+            if (logoContainer && !logoContainer.querySelector('a')) {
+                logoContainer.style.cursor = 'pointer';
+                
+                logoContainer.addEventListener('click', function() {
+                    window.location.href = 'index.php';
+                });
             }
         });
-    }
-    
-    const logoContainer = document.querySelector('nav .LOGO1');
-    
-    if (logoContainer && !logoContainer.querySelector('a')) {
-        logoContainer.style.cursor = 'pointer';
-        
-        logoContainer.addEventListener('click', function() {
-            window.location.href = 'index.php';
-        });
-    }
-});
 
-function tornarLogoClicavel() {
-    const logo = document.querySelector('nav .LOGO1 img');
-    
-    if (logo) {
-        logo.style.cursor = 'pointer';
-        logo.onclick = function() {
-            window.location.href = 'index.php';
-        };
-    }
-}
-
+        function tornarLogoClicavel() {
+            const logo = document.querySelector('nav .LOGO1 img');
+            
+            if (logo) {
+                logo.style.cursor = 'pointer';
+                logo.onclick = function() {
+                    window.location.href = 'index.php';
+                };
+            }
+        }
     </script>
 </body>
 </html>

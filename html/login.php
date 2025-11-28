@@ -28,7 +28,6 @@ include "../php/db.php";
             overflow: hidden;
         }
 
-        /* Animação de fundo */
         .background-animation {
             position: fixed;
             width: 100%;
@@ -89,7 +88,6 @@ include "../php/db.php";
             }
         }
 
-        /* Container do login */
         .login-container {
             position: relative;
             z-index: 1;
@@ -114,7 +112,6 @@ include "../php/db.php";
             }
         }
 
-        /* Botão de voltar */
         .back-button {
             position: absolute;
             top: 20px;
@@ -143,7 +140,6 @@ include "../php/db.php";
             font-size: 20px;
         }
 
-        /* Logo e cabeçalho */
         .login-header {
             text-align: center;
             margin-bottom: 40px;
@@ -188,7 +184,6 @@ include "../php/db.php";
             font-size: 15px;
         }
 
-        /* Formulário */
         .login-form {
             display: flex;
             flex-direction: column;
@@ -235,7 +230,6 @@ include "../php/db.php";
             color: #aaa;
         }
 
-        /* Toggle de senha */
         .password-toggle {
             position: absolute;
             right: 20px;
@@ -253,7 +247,6 @@ include "../php/db.php";
             color: #667eea;
         }
 
-        /* Esqueceu senha */
         .forgot-password {
             text-align: right;
             margin-top: -10px;
@@ -271,7 +264,6 @@ include "../php/db.php";
             text-decoration: underline;
         }
 
-        /* Botão de login */
         .login-button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -315,7 +307,6 @@ include "../php/db.php";
             margin-left: 10px;
         }
 
-        /* Divider */
         .divider {
             display: flex;
             align-items: center;
@@ -336,7 +327,6 @@ include "../php/db.php";
             padding: 0 15px;
         }
 
-        /* Registro */
         .register-link {
             text-align: center;
             color: #666;
@@ -354,7 +344,6 @@ include "../php/db.php";
             color: #764ba2;
         }
 
-        /* Footer com logo */
         .login-footer {
             margin-top: 35px;
             text-align: center;
@@ -367,7 +356,6 @@ include "../php/db.php";
             filter: grayscale(20%);
         }
 
-        /* Mensagem de erro/sucesso */
         .message {
             padding: 15px;
             border-radius: 12px;
@@ -400,7 +388,6 @@ include "../php/db.php";
             border-left: 4px solid #3c3;
         }
 
-        /* Responsividade */
         @media (max-width: 480px) {
             .login-container {
                 padding: 40px 30px;
@@ -432,7 +419,6 @@ include "../php/db.php";
     </style>
 </head>
 <body>
-    <!-- Animação de fundo -->
     <div class="background-animation">
         <div class="floating-shape"></div>
         <div class="floating-shape"></div>
@@ -440,14 +426,11 @@ include "../php/db.php";
         <div class="floating-shape"></div>
     </div>
 
-    <!-- Container do Login -->
     <div class="login-container">
-        <!-- Botão de voltar -->
         <a href="index.php" class="back-button" title="Voltar">
             <i class="fas fa-times"></i>
         </a>
 
-        <!-- Cabeçalho -->
         <div class="login-header">
             <div class="avatar-container">
                 <i class="fas fa-user"></i>
@@ -456,10 +439,8 @@ include "../php/db.php";
             <p>Faça login para continuar</p>
         </div>
 
-        <!-- Mensagem de feedback -->
         <div id="message" class="message"></div>
 
-        <!-- Formulário -->
         <form class="login-form" id="loginForm">
             <div class="input-group">
                 <i class="fas fa-envelope icon-left"></i>
@@ -504,14 +485,12 @@ include "../php/db.php";
             Não tem uma conta? <a href="#" id="registerLink">Cadastre-se</a>
         </div>
 
-        <!-- Footer -->
         <div class="login-footer">
             <img src="../imagem/logo1.JPG" alt="Ferrovia Futuro">
         </div>
     </div>
 
     <script>
-        // Toggle de visualização de senha
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
 
@@ -523,7 +502,6 @@ include "../php/db.php";
             this.classList.toggle('fa-eye-slash');
         });
 
-        // Validação do formulário
         const loginForm = document.getElementById('loginForm');
         const messageDiv = document.getElementById('message');
 
@@ -533,7 +511,6 @@ include "../php/db.php";
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
 
-            // Validação básica
             if (!email || !password) {
                 showMessage('Por favor, preencha todos os campos.', 'error');
                 return;
@@ -549,7 +526,6 @@ include "../php/db.php";
                 return;
             }
 
-            // Enviar formulário via fetch
             const formData = new FormData();
             formData.append('email', email);
             formData.append('password', password);
@@ -575,12 +551,10 @@ include "../php/db.php";
             });
         });
 
-        // Função para validar e-mail
         function isValidEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
-        // Função para exibir mensagens
         function showMessage(text, type) {
             messageDiv.textContent = text;
             messageDiv.className = 'message ' + type;
@@ -591,7 +565,6 @@ include "../php/db.php";
             }, 5000);
         }
 
-        // Links de ação
         document.getElementById('forgotLink').addEventListener('click', function(e) {
             e.preventDefault();
             showMessage('Funcionalidade em desenvolvimento.', 'error');
@@ -602,7 +575,6 @@ include "../php/db.php";
             showMessage('No momento somente administradores podem criar novos usuários.', 'error');
         });
 
-        // Animação de foco nos inputs
         const inputs = document.querySelectorAll('.input-group input');
         inputs.forEach(input => {
             input.addEventListener('focus', function() {
