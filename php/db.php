@@ -6,9 +6,6 @@ $DB_USER = "root";
 $DB_PASS = "root";
 $DB_CHARSET = "utf8mb4";
 
-
-
-// --- FUNÇÃO PDO ---
 function getPDO() {
     global $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME, $DB_CHARSET;
 

@@ -1,9 +1,7 @@
 <?php
 
 class UserModel {
-    /** @var PDO */
     private $db;
-    /** @var string */
     private $table;
 
 
@@ -43,7 +41,6 @@ class UserModel {
         }
     }
 
-  
     public function authenticate(string $email, string $password) {
         try {
             $sql = "SELECT * FROM {$this->table} WHERE email = :email LIMIT 1";

@@ -99,7 +99,6 @@ function mqtt_publish($host, $port, $topic, $message, $clientId = null, $qos = 0
     return ['success' => (bool)$ok];
 }
 
-
 function mqtt_subscribe($host, $port, $topic, $clientId = null, $timeout = 5, $username = null, $password = null) {
     if (is_null($clientId)) $clientId = 'php_sub_' . rand(1000, 9999);
     $sock = mqtt_connect_socket($host, $port, $timeout);
@@ -124,7 +123,6 @@ function mqtt_subscribe($host, $port, $topic, $clientId = null, $timeout = 5, $u
     $fixed = chr(0x82) . mqtt_encode_length(strlen($remaining));
     $packet = $fixed . $remaining;
     mqtt_write_packet($sock, $packet);
-
 
     $suback = fread($sock, 5);
 
@@ -162,6 +160,5 @@ function mqtt_subscribe($host, $port, $topic, $clientId = null, $timeout = 5, $u
 
     return ['success' => true, 'messages' => $messages];
 }
-
 
 ?>
