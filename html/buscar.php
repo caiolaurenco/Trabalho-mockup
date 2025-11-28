@@ -298,7 +298,7 @@ function tornarLogoClicavel() {
 }
 
     
-    // Dados de busca com páginas correspondentes
+
     const searchData = [
       { title: 'Gestão de Rotas', description: 'Visualize e gerencie todas as rotas do sistema ferroviário', keywords: ['rota', 'rotas', 'gestao', 'ferrovia', 'trem', 'linha'], page: 'rotas2.php' },
       { title: 'Quadro de Horários', description: 'Consulte horários de partida e chegada dos trens', keywords: ['horario', 'horarios', 'hora', 'partida', 'chegada', 'tempo'], page: 'horario.php' },
@@ -312,14 +312,14 @@ function tornarLogoClicavel() {
     const resultsContainer = document.getElementById('resultsContainer');
     const resultsContent = document.getElementById('resultsContent');
 
-    // Função para normalizar texto (remover acentos)
+
     function normalizeText(text) {
       return text.toLowerCase()
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '');
     }
 
-    // Função de busca
+   
     function performSearch(query) {
       const normalizedQuery = normalizeText(query.trim());
       
@@ -340,7 +340,7 @@ function tornarLogoClicavel() {
       displayResults(results);
     }
 
-    // Função para exibir resultados
+  
     function displayResults(results) {
       resultsContainer.classList.add('show');
 
@@ -363,18 +363,18 @@ function tornarLogoClicavel() {
       `).join('');
     }
 
-    // Event listener para o formulário
+    
     searchForm.addEventListener('submit', function(e) {
       e.preventDefault();
       performSearch(searchInput.value);
     });
 
-    // Busca em tempo real
+    
     searchInput.addEventListener('input', function() {
       performSearch(this.value);
     });
 
-    // Esconder resultados ao clicar fora
+    
     document.addEventListener('click', function(e) {
       if (!resultsContainer.contains(e.target) && 
           !searchInput.contains(e.target) && 
@@ -383,7 +383,7 @@ function tornarLogoClicavel() {
       }
     });
 
-    // Mostrar resultados ao focar no input
+    
     searchInput.addEventListener('focus', function() {
       if (this.value.trim().length >= 2) {
         resultsContainer.classList.add('show');
