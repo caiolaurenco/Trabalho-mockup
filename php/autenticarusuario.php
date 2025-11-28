@@ -14,7 +14,7 @@ if ($input && is_array($input)) {
 $email = isset($data['email']) ? trim($data['email']) : '';
 $password = isset($data['password']) ? $data['password'] : '';
 
-// Validação básica
+
 if ($email === '' || $password === '') {
     http_response_code(400);
     echo json_encode([
@@ -24,7 +24,7 @@ if ($email === '' || $password === '') {
     exit;
 }
 
-// Validar formato do email
+
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400);
     echo json_encode([

@@ -2,15 +2,15 @@
 session_start();
 
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    // Salvar URL atual para redirecionamento após login
+    
     $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
     
-    // Redirecionar para página de login
+   
     header('Location: login.php');
     exit;
 }
 
-$session_timeout = 3600; // 1 hora em segundos
+$session_timeout = 3600; 
 
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_timeout)) {
     session_unset();

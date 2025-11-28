@@ -18,7 +18,7 @@ $cpf        = isset($data["cpf"]) ? trim($data["cpf"]) : null;
 $password   = isset($data["password"]) ? $data["password"] : null;
 $data_nasc  = isset($data["data_nasc"]) ? $data["data_nasc"] : null;
 
-// Campos obrigatórios do banco
+
 if (!$name || !$email || !$cpf || !$password || !$data_nasc) {
     http_response_code(400);
     echo json_encode([
