@@ -2,6 +2,7 @@
 session_start();
 include "../php/db.php";
 
+// Buscar todos os usuários
 $stmt = $mysqli->prepare("SELECT id, name, email, cpf, data_nasc, cargo, criado_em, ultimo_acesso FROM usuarios ORDER BY criado_em DESC");
 $stmt->execute();
 $result = $stmt->get_result();
@@ -29,7 +30,7 @@ $stmt->close();
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -315,6 +316,7 @@ $stmt->close();
             box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
         }
 
+        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -648,6 +650,7 @@ $stmt->close();
         </div>
     </div>
 
+    <!-- Modal de Edição -->
     <div class="modal-overlay" id="modalEdicao">
         <div class="modal-content">
             <div class="modal-header">
@@ -801,12 +804,14 @@ $stmt->close();
             });
         }
 
+        // Fechar modal ao clicar fora
         document.getElementById('modalEdicao').addEventListener('click', function(e) {
             if (e.target === this) {
                 fecharModal();
             }
         });
 
+        // Máscara de CPF
         document.getElementById('edit_cpf').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 11) value = value.slice(0, 11);

@@ -59,14 +59,6 @@ include "../php/db.php";
             padding: 20px;
         }
 
-        .menu-item:nth-child(7),
-        .menu-item:nth-child(8) {
-            grid-column: 1 / -1;
-            max-width: 250px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
         .menu-item {
             background: #e8e8e8;
             border-radius: 15px;
@@ -164,7 +156,7 @@ include "../php/db.php";
         </a>
 
         <a href="gerenciar_usuarios.php" class="menu-item">
-            <img src="../imagem/msg.png" alt="Gerenciar Usuários">
+            <img src="../imagem/casa.png" alt="Gerenciar Usuários">
             <h3>Gerenciar<br>Usuários</h3>
         </a>
 

@@ -6,7 +6,6 @@ $DB_USER = "root";
 $DB_PASS = "";
 $DB_CHARSET = "utf8mb4";
 
-<<<<<<< HEAD
 // Conexão MySQLi Global
 $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 
@@ -20,8 +19,6 @@ if ($mysqli->connect_error) {
 $mysqli->set_charset($DB_CHARSET);
 
 // Função PDO (mantida para compatibilidade)
-=======
->>>>>>> 060495b88f50316748d67bfb534cbe527ae02d46
 function getPDO() {
     global $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME, $DB_CHARSET;
     

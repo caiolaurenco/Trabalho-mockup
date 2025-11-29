@@ -4,7 +4,6 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
-<<<<<<< HEAD
 session_start();
 require_once __DIR__ . '/db.php';
 
@@ -56,18 +55,6 @@ try {
     
     $user = $result->fetch_assoc();
     $check->close();
-=======
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
-    $id = (int)$_POST['id'];
-    
-    if ($id === 1) {
-        header("Location: pessoal.php?erro=admin_protegido");
-        exit;
-    }
-    
-    $stmt = $mysqli->prepare("DELETE FROM usuarios WHERE id = ?");
-    $stmt->bind_param("i", $id);
->>>>>>> 060495b88f50316748d67bfb534cbe527ae02d46
     
     // Excluir usuário
     $delete = $mysqli->prepare("DELETE FROM usuarios WHERE id = ?");
