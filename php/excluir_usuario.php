@@ -1,31 +1,85 @@
 <?php
-session_start();
-include "db.php";
+header('Content-Type: application/json; charset=utf-8');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
-// Verificar se foi enviado um ID
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
-    $id = (int)$_POST['id'];
+session_start();
+require_once __DIR__ . '/db.php';
+
+// Processar dados
+$raw = file_get_contents('php://input');
+$data = json_decode($raw, true);
+
+if (!$data) {
+    $data = $_POST;
+}
+
+// Validar ID
+$id = isset($data['id']) ? (int)$data['id'] : 0;
+
+if ($id <= 0) {
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'message' => 'ID inválido'
+    ]);
+    exit;
+}
+
+// Proteger usuário admin padrão
+if ($id === 1) {
+    http_response_code(403);
+    echo json_encode([
+        'success' => false,
+        'message' => 'O usuário administrador padrão não pode ser excluído'
+    ]);
+    exit;
+}
+
+try {
+    // Verificar se usuário existe
+    $check = $mysqli->prepare("SELECT name FROM usuarios WHERE id = ? LIMIT 1");
+    $check->bind_param("i", $id);
+    $check->execute();
+    $result = $check->get_result();
     
-    // Prevenir exclusão do usuário admin principal (opcional)
-    if ($id === 1) {
-        header("Location: pessoal.php?erro=admin_protegido");
+    if ($result->num_rows === 0) {
+        http_response_code(404);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Usuário não encontrado'
+        ]);
         exit;
     }
     
-    // Excluir usuário
-    $stmt = $mysqli->prepare("DELETE FROM usuarios WHERE id = ?");
-    $stmt->bind_param("i", $id);
+    $user = $result->fetch_assoc();
+    $check->close();
     
-    if ($stmt->execute()) {
-        header("Location: pessoal.php?sucesso=usuario_excluido");
+    // Excluir usuário
+    $delete = $mysqli->prepare("DELETE FROM usuarios WHERE id = ?");
+    $delete->bind_param("i", $id);
+    
+    if ($delete->execute()) {
+        echo json_encode([
+            'success' => true,
+            'message' => 'Usuário excluído com sucesso',
+            'deleted_user' => $user['name']
+        ]);
     } else {
-        header("Location: pessoal.php?erro=falha_exclusao");
+        throw new Exception("Erro ao executar exclusão: " . $mysqli->error);
     }
     
-    $stmt->close();
-    exit;
-} else {
-    header("Location: pessoal.php");
-    exit;
+    $delete->close();
+    
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Erro ao excluir usuário',
+        'error' => $e->getMessage()
+    ]);
 }
+
+$mysqli->close();
 ?>

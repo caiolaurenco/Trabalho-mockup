@@ -59,7 +59,8 @@ include "../php/db.php";
             padding: 20px;
         }
 
-        .menu-item:last-child {
+        .menu-item:nth-child(7),
+        .menu-item:nth-child(8) {
             grid-column: 1 / -1;
             max-width: 250px;
             margin: 0 auto;
@@ -160,6 +161,11 @@ include "../php/db.php";
         <a href="pessoal.php" class="menu-item">
             <img src="../imagem/msg.png" alt="Informações Pessoais">
             <h3>Informações<br>Pessoais</h3>
+        </a>
+
+        <a href="gerenciar_usuarios.php" class="menu-item">
+            <img src="../imagem/msg.png" alt="Gerenciar Usuários">
+            <h3>Gerenciar<br>Usuários</h3>
         </a>
 
         <a href="rotas2.php" class="menu-item">
