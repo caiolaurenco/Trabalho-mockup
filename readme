@@ -24,6 +24,7 @@ Este projeto é um sistema web desenvolvido em PHP que simula funcionalidades de
 - `style.css`: Estilos visuais do site.
 - `script.js`: Scripts de interação.
 - `imagem/`: Imagens utilizadas na interface.
+- `env.h`: configurações wifi, mqtt, sensores.
 
 ## Observações
 - O sistema utiliza PHP puro e MySQL para persistência de dados.

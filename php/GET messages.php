@@ -1,8 +1,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
-
-include _DIR_ . '/mqtt_helper.php';
+include __DIR__ . '/mqtt_helper.php';
 
 $raw = file_get_contents('php://input');
 $input = json_decode($raw, true);
@@ -19,7 +18,6 @@ if ($topic === '') {
     echo json_encode(['success' => false, 'message' => 'Parâmetro "topic" é obrigatório.']);
     exit;
 }
-
 
 if ($timeout < 1) $timeout = 1;
 if ($timeout > 30) $timeout = 30;

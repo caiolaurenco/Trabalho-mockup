@@ -23,7 +23,6 @@ include "../php/db.php";
             position: relative;
         }
 
-        /* Animação de fundo */
         .background-animation {
             position: fixed;
             width: 100%;
@@ -82,7 +81,7 @@ include "../php/db.php";
             }
         }
 
-        /* Partículas flutuantes */
+        
         .particle {
             position: absolute;
             background: rgba(255, 255, 255, 0.3);
@@ -133,7 +132,6 @@ include "../php/db.php";
             }
         }
 
-        /* Container principal */
         .container {
             position: relative;
             z-index: 1;
@@ -145,7 +143,6 @@ include "../php/db.php";
             padding: 20px;
         }
 
-        /* Logo com efeito glassmorphism */
         .logo-container {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
@@ -175,7 +172,6 @@ include "../php/db.php";
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
         }
 
-        /* Título principal */
         .main-title {
             font-size: 3.5em;
             font-weight: bold;
@@ -207,7 +203,6 @@ include "../php/db.php";
             }
         }
 
-        /* Botão moderno */
         .cta-button {
             position: relative;
             background: white;
@@ -252,7 +247,6 @@ include "../php/db.php";
             transform: translateY(-2px) scale(1.02);
         }
 
-        /* Ícone no botão */
         .button-icon {
             display: inline-block;
             margin-left: 15px;
@@ -263,7 +257,6 @@ include "../php/db.php";
             transform: translateX(10px);
         }
 
-        /* Footer com trem */
         .footer {
             position: fixed;
             bottom: 0;
@@ -290,7 +283,6 @@ include "../php/db.php";
             opacity: 0.9;
         }
 
-        /* Features em destaque */
         .features {
             display: flex;
             gap: 30px;
@@ -329,7 +321,6 @@ include "../php/db.php";
             opacity: 0.8;
         }
 
-        /* Responsividade */
         @media (max-width: 768px) {
             .main-title {
                 font-size: 2.5em;
@@ -378,7 +369,6 @@ include "../php/db.php";
     </style>
 </head>
 <body>
-    <!-- Animação de fundo -->
     <div class="background-animation">
         <div class="rail-line"></div>
         <div class="rail-line"></div>
@@ -390,29 +380,24 @@ include "../php/db.php";
         <div class="particle"></div>
     </div>
 
-    <!-- Container principal -->
     <div class="container">
-        <!-- Logo -->
         <div class="logo-container">
             <img src="../imagem/logo1.JPG" alt="Ferrovia Futuro Logo">
         </div>
 
-        <!-- Título -->
         <h1 class="main-title">FERROVIA FUTURO</h1>
         <p class="subtitle">Conectando destinos com eficiência e modernidade</p>
 
-        <!-- Botão principal -->
         <a href="login.php" class="cta-button">
             Começar Agora
             <span class="button-icon">→</span>
         </a>
 
-        <!-- Features -->
         <div class="features">
             <div class="feature-item">
                 <span style="font-size: 2em;"></span>
                 <h3>Rotas Inteligentes</h3>
-                <p>Tecnologia de ponta</p>
+                <p>Tecnologia de Ponta</p>
             </div>
             <div class="feature-item">
                 <span style="font-size: 2em;"></span>
@@ -427,7 +412,5 @@ include "../php/db.php";
         </div>
     </div>
 
-    <!-- Footer -->
-   
 </body>
 </html>

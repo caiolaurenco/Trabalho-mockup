@@ -80,7 +80,6 @@
             text-align: center;
         }
 
-        /* Estilos para lista de usuários */
         .usuarios-section {
             width: 100%;
             max-width: 800px;
@@ -124,7 +123,6 @@
 </head>
 <body class="pessoal-page">
 
-    <!-- Sidebar -->
     <aside id="sidebar" class="sidebar">
         <ul>
             <li><a href="index.php"><img src="../imagem/casa.png" alt="casa">Início</a></li>
@@ -138,7 +136,6 @@
         </ul>
     </aside>
 
-    <!-- Navbar -->
     <nav>
         <div class="flex">
             <img src="../imagem/menu.png" alt="logo-menu" id="menu-button" />
@@ -147,8 +144,6 @@
                 <img src="../imagem/logo1.JPG" alt="LOG" />
             </div>
 
-      
-
             <div class="lupa">
                 <img src="../imagem/search (1).png" alt="lupa" />
                 <p class="subtexto">BUSCAR</p>
@@ -156,9 +151,7 @@
         </div>
     </nav>
 
-    <!-- Conteúdo Principal -->
     <div class="content-wrapper">
-        <!-- Formulário de Cadastro -->
         <div class="form-container">
             <h2>Cadastro de Usuário</h2>
 
@@ -192,7 +185,6 @@
             </form>
         </div>
 
-        <!-- Lista de Usuários Cadastrados -->
         <div class="usuarios-section">
             <h3>Usuários Cadastrados</h3>
             <div class="lista-usuarios" id="listaUsuarios">
@@ -203,12 +195,10 @@
 
     <script src="../Js/script.js"></script>
     <script>
-    // Carregar usuários ao iniciar
     document.addEventListener('DOMContentLoaded', function() {
         carregarUsuarios();
     });
 
-    // Função para carregar usuários do localStorage
     function carregarUsuarios() {
         const listaContainer = document.getElementById('listaUsuarios');
         const USERS_KEY = 'mockup_users_v1';
@@ -240,7 +230,6 @@
         }
     }
 
-    // Função para salvar usuário no localStorage
     function salvarUsuario(userData) {
         const USERS_KEY = 'mockup_users_v1';
         try {
@@ -254,14 +243,12 @@
         }
     }
 
-    // Enviar formulário
     document.getElementById("formCadastro").addEventListener("submit", async function(e){
         e.preventDefault();
 
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
 
-        // Validação básica
         if (!data.name || !data.email || !data.cpf || !data.password || !data.data_nasc || !data.cargo) {
             const msg = document.getElementById("msg");
             msg.innerHTML = "Por favor, preencha todos os campos.";
@@ -269,10 +256,8 @@
             return;
         }
 
-        // Salvar no localStorage para exibição imediata
         salvarUsuario(data);
 
-        // Enviar para o servidor
         const req = await fetch("../php/api.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -285,72 +270,69 @@
         msg.innerHTML = res.message;
         msg.style.color = res.success ? "green" : "red";
 
-        // Recarregar lista de usuários
         if (res.success) {
             carregarUsuarios();
             
-            // Limpar formulário
             this.reset();
             
-            // Redirecionar após 2 segundos
             setTimeout(() => {
                 window.location.href = "index.php";
             }, 2000);
         }
     });
 
- document.addEventListener('DOMContentLoaded', function() {
-    const logo = document.querySelector('nav .LOGO1 img');
-    
-    if (logo) {
-        logo.style.cursor = 'pointer';
+    document.addEventListener('DOMContentLoaded', function() {
+        const logo = document.querySelector('nav .LOGO1 img');
         
-        logo.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.08)';
-            this.style.transition = 'transform 0.3s ease';
-        });
-        
-        logo.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-        
-        logo.addEventListener('click', function() {
-            window.location.href = 'index.php';
-        });
-
-        logo.setAttribute('tabindex', '0');
-        logo.setAttribute('role', 'button');
-        logo.setAttribute('aria-label', 'Voltar para página inicial');
-        
-        logo.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
+        if (logo) {
+            logo.style.cursor = 'pointer';
+            
+            logo.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.08)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            logo.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+            
+            logo.addEventListener('click', function() {
                 window.location.href = 'index.php';
-            }
-        });
-    }
-    
-    const logoContainer = document.querySelector('nav .LOGO1');
-    
-    if (logoContainer && !logoContainer.querySelector('a')) {
-        logoContainer.style.cursor = 'pointer';
-        
-        logoContainer.addEventListener('click', function() {
-            window.location.href = 'index.php';
-        });
-    }
-});
+            });
 
-function tornarLogoClicavel() {
-    const logo = document.querySelector('nav .LOGO1 img');
-    
-    if (logo) {
-        logo.style.cursor = 'pointer';
-        logo.onclick = function() {
-            window.location.href = 'index.php';
-        };
+            logo.setAttribute('tabindex', '0');
+            logo.setAttribute('role', 'button');
+            logo.setAttribute('aria-label', 'Voltar para página inicial');
+            
+            logo.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.location.href = 'index.php';
+                }
+            });
+        }
+        
+        const logoContainer = document.querySelector('nav .LOGO1');
+        
+        if (logoContainer && !logoContainer.querySelector('a')) {
+            logoContainer.style.cursor = 'pointer';
+            
+            logoContainer.addEventListener('click', function() {
+                window.location.href = 'index.php';
+            });
+        }
+    });
+
+    function tornarLogoClicavel() {
+        const logo = document.querySelector('nav .LOGO1 img');
+        
+        if (logo) {
+            logo.style.cursor = 'pointer';
+            logo.onclick = function() {
+                window.location.href = 'index.php';
+            };
+        }
     }
-}
     </script>
 
 </body>

@@ -1,6 +1,6 @@
 <?php
 include "../php/db.php";
-session_start(); // Garantir que a sessão está iniciada
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -198,15 +198,12 @@ session_start(); // Garantir que a sessão está iniciada
   <script>
     let notificacoesAtivas = true;
 
-    // Função para obter ID do usuário
     function getUserId() {
       return '<?php echo isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : "guest"; ?>';
     }
 
-    // Chave única para cada usuário
     const STORAGE_KEY = `notificacoes_lidas_${getUserId()}`;
 
-    // Função para carregar notificações lidas do localStorage
     function carregarNotificacoesLidas() {
       try {
         const lidas = localStorage.getItem(STORAGE_KEY);
@@ -216,7 +213,6 @@ session_start(); // Garantir que a sessão está iniciada
       }
     }
 
-    // Função para salvar notificações lidas
     function salvarNotificacoesLidas(ids) {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
@@ -225,7 +221,6 @@ session_start(); // Garantir que a sessão está iniciada
       }
     }
 
-    // Função para marcar notificação como lida
     function marcarNotificacaoLida(id) {
       const lidas = carregarNotificacoesLidas();
       if (!lidas.includes(id)) {
@@ -234,7 +229,6 @@ session_start(); // Garantir que a sessão está iniciada
       }
     }
 
-    // Função para remover notificações já lidas
     function removerNotificacoesLidas() {
       const lidas = carregarNotificacoesLidas();
       const notificacoes = document.querySelectorAll('.notificacao-item');
@@ -247,14 +241,11 @@ session_start(); // Garantir que a sessão está iniciada
       });
     }
 
-    // Verificar se o usuário mudou e limpar notificações antigas
     function verificarMudancaUsuario() {
       const usuarioAtual = getUserId();
       const usuarioAnterior = localStorage.getItem('ultimo_usuario_logado');
       
-      // Se mudou de usuário, limpar todas as notificações lidas
       if (usuarioAnterior && usuarioAnterior !== usuarioAtual) {
-        // Limpar notificações do usuário anterior
         const chavesParaRemover = [];
         for (let i = 0; i < localStorage.length; i++) {
           const chave = localStorage.key(i);
@@ -263,17 +254,14 @@ session_start(); // Garantir que a sessão está iniciada
           }
         }
         
-        // Remover todas as chaves de notificações
         chavesParaRemover.forEach(chave => {
           localStorage.removeItem(chave);
         });
       }
       
-      // Salvar usuário atual
       localStorage.setItem('ultimo_usuario_logado', usuarioAtual);
     }
 
-    // Função para atualizar contador
     function atualizarContador() {
       const notificacoes = document.querySelectorAll('.notificacao-item:not(.removing)');
       const numero = notificacoes.length;
@@ -290,7 +278,6 @@ session_start(); // Garantir que a sessão está iniciada
       }
     }
 
-    // Função para mostrar mensagem quando não há notificações
     function mostrarMensagemVazia() {
       const conteudo = document.getElementById('conteudo');
       if (conteudo.children.length === 0) {
@@ -304,7 +291,6 @@ session_start(); // Garantir que a sessão está iniciada
       }
     }
 
-    // Função para marcar como lido (remove as notificações)
     function marcarComoLido() {
       const notificacoes = document.querySelectorAll('.notificacao-item:not(.removing)');
       
@@ -313,26 +299,21 @@ session_start(); // Garantir que a sessão está iniciada
         return;
       }
 
-      // Adiciona classe de remoção com delay escalonado
       notificacoes.forEach((notif, index) => {
         setTimeout(() => {
           const id = notif.getAttribute('data-id');
           
-          // Marcar como lida no localStorage
           if (id) {
             marcarNotificacaoLida(id);
           }
           
-          // Remove o badge vermelho
           const badge = notif.querySelector('.sininho-badge');
           if (badge) {
             badge.classList.add('no-badge');
           }
           
-          // Adiciona classe de remoção
           notif.classList.add('removing');
           
-          // Remove do DOM após animação
           setTimeout(() => {
             notif.remove();
             atualizarContador();
@@ -341,7 +322,6 @@ session_start(); // Garantir que a sessão está iniciada
       });
     }
 
-    // Função para toggle de notificações
     function toggleNotificacoes() {
       const conteudo = document.getElementById('conteudo');
       const toggleText = document.getElementById('toggleText');
@@ -364,12 +344,9 @@ session_start(); // Garantir que a sessão está iniciada
       }
     }
 
-    // Adicionar funcionalidade de clique individual em cada notificação
     document.addEventListener('DOMContentLoaded', function() {
-      // Verificar mudança de usuário primeiro
       verificarMudancaUsuario();
       
-      // Remover notificações já lidas ao carregar a página
       removerNotificacoesLidas();
       
       const notificacoes = document.querySelectorAll('.notificacao-item');
@@ -379,21 +356,17 @@ session_start(); // Garantir que a sessão está iniciada
           if (!this.classList.contains('removing')) {
             const id = this.getAttribute('data-id');
             
-            // Marcar como lida no localStorage
             if (id) {
               marcarNotificacaoLida(id);
             }
             
-            // Remove o badge vermelho
             const badge = this.querySelector('.sininho-badge');
             if (badge) {
               badge.classList.add('no-badge');
             }
             
-            // Adiciona classe de remoção
             this.classList.add('removing');
             
-            // Remove do DOM após animação
             setTimeout(() => {
               this.remove();
               atualizarContador();
@@ -401,66 +374,64 @@ session_start(); // Garantir que a sessão está iniciada
           }
         });
 
-        // Adicionar cursor pointer
         notif.style.cursor = 'pointer';
       });
 
-      // Inicializar contador
       atualizarContador();
     });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const logo = document.querySelector('nav .LOGO1 img');
-    
-    if (logo) {
-        logo.style.cursor = 'pointer';
-        
-        logo.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.08)';
-            this.style.transition = 'transform 0.3s ease';
-        });
-        
-        logo.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-        
-        logo.addEventListener('click', function() {
-            window.location.href = 'index.php';
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+      const logo = document.querySelector('nav .LOGO1 img');
+      
+      if (logo) {
+          logo.style.cursor = 'pointer';
+          
+          logo.addEventListener('mouseenter', function() {
+              this.style.transform = 'scale(1.08)';
+              this.style.transition = 'transform 0.3s ease';
+          });
+          
+          logo.addEventListener('mouseleave', function() {
+              this.style.transform = 'scale(1)';
+          });
+          
+          logo.addEventListener('click', function() {
+              window.location.href = 'index.php';
+          });
 
-        logo.setAttribute('tabindex', '0');
-        logo.setAttribute('role', 'button');
-        logo.setAttribute('aria-label', 'Voltar para página inicial');
+          logo.setAttribute('tabindex', '0');
+          logo.setAttribute('role', 'button');
+          logo.setAttribute('aria-label', 'Voltar para página inicial');
+          
+          logo.addEventListener('keypress', function(e) {
+              if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  window.location.href = 'index.php';
+              }
+          });
+      }
+      
+      const logoContainer = document.querySelector('nav .LOGO1');
+      
+      if (logoContainer && !logoContainer.querySelector('a')) {
+          logoContainer.style.cursor = 'pointer';
+          
+          logoContainer.addEventListener('click', function() {
+              window.location.href = 'index.php';
+          });
+      }
+    });
+
+    function tornarLogoClicavel() {
+        const logo = document.querySelector('nav .LOGO1 img');
         
-        logo.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
+        if (logo) {
+            logo.style.cursor = 'pointer';
+            logo.onclick = function() {
                 window.location.href = 'index.php';
-            }
-        });
+            };
+        }
     }
-    
-    const logoContainer = document.querySelector('nav .LOGO1');
-    
-    if (logoContainer && !logoContainer.querySelector('a')) {
-        logoContainer.style.cursor = 'pointer';
-        
-        logoContainer.addEventListener('click', function() {
-            window.location.href = 'index.php';
-        });
-    }
-});
-
-function tornarLogoClicavel() {
-    const logo = document.querySelector('nav .LOGO1 img');
-    
-    if (logo) {
-        logo.style.cursor = 'pointer';
-        logo.onclick = function() {
-            window.location.href = 'index.php';
-        };
-    }
-}
 
   </script>
 
