@@ -12,7 +12,7 @@ include "../php/db.php";
     <script src="https://unpkg.com/mqtt@4.3.7/dist/mqtt.min.js"></script>
     <style>
         .rotas-page {
-            background: linear-gradient(135deg, #eae2e2ff 0%, #ffffffff 100%);
+            background: #d9d9d9;
             min-height: 100vh;
         }
 
@@ -379,17 +379,17 @@ include "../php/db.php";
 </head>
 <body class="rotas-page">
     <aside id="sidebar" class="sidebar">
-        <ul>
-            <li><a href="index.php"><img src="../imagem/casa.png" alt="casa">Início</a></li>
-            <li><a href="pessoal.php"><img src="../imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
-            <li><a href="index.php"><img src="../imagem/front-of-bus.png" alt="bus2"> Rotas</a></li>
-            <li><a href="rotas2.php"><img src="../imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
-            <li><a href="horario.php"><img src="../imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
-            <li><a href="notific.php"><img src="../imagem/carta.png" alt="carta">Relatórios</a></li>
-            <li><a href="buscar.php"><img src="../imagem/search (1).png" alt="search"> Buscar</a></li>
-            <li><a href="capa.php"><img src="../imagem/sair.png" alt="sair"> Sair</a></li>
-        </ul>
-    </aside>
+    <ul>
+        <li><a href="index.php"><img src="../imagem/casa.png" alt="casa">Início</a></li>
+        <li><a href="pessoal.php"><img src="../imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
+        <li><a href="gerenciar_usuarios.php"><img src="../imagem/casa.png" alt="usuarios"> Gerenciar Usuários</a></li>
+        <li><a href="rotas2.php"><img src="../imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
+        <li><a href="horario.php"><img src="../imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
+        <li><a href="notific.php"><img src="../imagem/carta.png" alt="carta">Relatórios</a></li>
+        <li><a href="buscar.php"><img src="../imagem/search (1).png" alt="search"> Buscar</a></li>
+        <li><a href="capa.php"><img src="../imagem/sair.png" alt="sair"> Sair</a></li>
+    </ul>
+</aside>
 
     <nav>
         <div class="flex">

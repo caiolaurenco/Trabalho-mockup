@@ -30,60 +30,36 @@ $stmt->close();
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            background: #d9d9d9;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 20px;
+            padding-top: 80px;
         }
 
-        .header {
+        .page-title {
             background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .header h1 {
             color: #2c3e50;
-            font-size: 32px;
+            font-size: 28px;
+            font-weight: 700;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
         }
 
-        .header h1 i {
+        .page-title i {
             color: #667eea;
-        }
-
-        .btn-voltar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-voltar:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
 
         .search-bar {
@@ -316,7 +292,6 @@ $stmt->close();
             box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
         }
 
-        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -503,13 +478,9 @@ $stmt->close();
         }
 
         @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .header h1 {
-                font-size: 24px;
+            .page-title {
+                font-size: 22px;
+                padding: 20px;
             }
 
             .users-grid {
@@ -527,16 +498,36 @@ $stmt->close();
     </style>
 </head>
 <body>
+    <aside id="sidebar" class="sidebar">
+    <ul>
+        <li><a href="index.php"><img src="../imagem/casa.png" alt="casa">Início</a></li>
+        <li><a href="pessoal.php"><img src="../imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
+        <li><a href="gerenciar_usuarios.php"><img src="../imagem/casa.png" alt="usuarios"> Gerenciar Usuários</a></li>
+        <li><a href="rotas2.php"><img src="../imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
+        <li><a href="horario.php"><img src="../imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
+        <li><a href="notific.php"><img src="../imagem/carta.png" alt="carta">Relatórios</a></li>
+        <li><a href="buscar.php"><img src="../imagem/search (1).png" alt="search"> Buscar</a></li>
+        <li><a href="capa.php"><img src="../imagem/sair.png" alt="sair"> Sair</a></li>
+    </ul>
+</aside>
+
+    <nav>
+        <div class="flex">
+            <img src="../imagem/menu.png" alt="logo-menu" id="menu-button" />
+            <div class="LOGO1">
+                <img src="../imagem/logo1.JPG" alt="LOG" />
+            </div>
+            <div class="lupa">
+                <img src="../imagem/search (1).png" alt="lupa" />
+                <p class="subtexto">BUSCAR</p>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <div class="header">
-            <h1>
-                <i class="fas fa-users-cog"></i>
-                Gerenciar Usuários
-            </h1>
-            <a href="index.php" class="btn-voltar">
-                <i class="fas fa-arrow-left"></i>
-                Voltar ao Início
-            </a>
+        <div class="page-title">
+            <i class="fas fa-users-cog"></i>
+            Gerenciar Usuários
         </div>
 
         <div class="search-bar">
@@ -650,7 +641,6 @@ $stmt->close();
         </div>
     </div>
 
-    <!-- Modal de Edição -->
     <div class="modal-overlay" id="modalEdicao">
         <div class="modal-content">
             <div class="modal-header">
@@ -711,6 +701,7 @@ $stmt->close();
         </div>
     </div>
 
+    <script src="../Js/script.js"></script>
     <script>
         function abrirModalEdicao(user) {
             document.getElementById('edit_id').value = user.id;
@@ -804,14 +795,12 @@ $stmt->close();
             });
         }
 
-        // Fechar modal ao clicar fora
         document.getElementById('modalEdicao').addEventListener('click', function(e) {
             if (e.target === this) {
                 fecharModal();
             }
         });
 
-        // Máscara de CPF
         document.getElementById('edit_cpf').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 11) value = value.slice(0, 11);
@@ -825,6 +814,27 @@ $stmt->close();
             }
             
             e.target.value = value;
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const logo = document.querySelector('nav .LOGO1 img');
+            
+            if (logo) {
+                logo.style.cursor = 'pointer';
+                
+                logo.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.08)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                logo.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+                
+                logo.addEventListener('click', function() {
+                    window.location.href = 'index.php';
+                });
+            }
         });
     </script>
 </body>

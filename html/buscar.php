@@ -10,6 +10,13 @@ include "../php/db.php";
   <title>Buscar</title>
   <link rel="stylesheet" href="../Css/style.css">
   <style>
+    body {
+      background: #d9d9d9;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     .search-container {
       max-width: 800px;
       margin: 40px auto;
@@ -176,7 +183,7 @@ include "../php/db.php";
     <ul>
       <li><a href="index.php"><img src="../imagem/casa.png" alt="casa">Início</a></li>
       <li><a href="pessoal.php"><img src="../imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
-      <li><a href="index.php"><img src="../imagem/front-of-bus.png" alt="bus2"> Rotas</a></li>
+      <li><a href="gerenciar_usuarios.php"><img src="../imagem/casa.png" alt="usuarios"> Gerenciar Usuários</a></li>
       <li><a href="rotas2.php"><img src="../imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
       <li><a href="horario.php"><img src="../imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
       <li><a href="notific.php"><img src="../imagem/carta.png" alt="carta">Relatórios</a></li>
@@ -243,61 +250,23 @@ include "../php/db.php";
 
   <script src="../Js/script.js"></script>
   <script>
-
- document.addEventListener('DOMContentLoaded', function() {
-    const logo = document.querySelector('nav .LOGO1 img');
-    
-    if (logo) {
+    document.addEventListener('DOMContentLoaded', function() {
+      const logo = document.querySelector('nav .LOGO1 img');
+      
+      if (logo) {
         logo.style.cursor = 'pointer';
-        
         logo.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.08)';
-            this.style.transition = 'transform 0.3s ease';
+          this.style.transform = 'scale(1.08)';
+          this.style.transition = 'transform 0.3s ease';
         });
-        
         logo.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
+          this.style.transform = 'scale(1)';
         });
-        
         logo.addEventListener('click', function() {
-            window.location.href = 'index.php';
+          window.location.href = 'index.php';
         });
-
-        logo.setAttribute('tabindex', '0');
-        logo.setAttribute('role', 'button');
-        logo.setAttribute('aria-label', 'Voltar para página inicial');
-        
-        logo.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                window.location.href = 'index.php';
-            }
-        });
-    }
-    
-    const logoContainer = document.querySelector('nav .LOGO1');
-    
-    if (logoContainer && !logoContainer.querySelector('a')) {
-        logoContainer.style.cursor = 'pointer';
-        
-        logoContainer.addEventListener('click', function() {
-            window.location.href = 'index.php';
-        });
-    }
-});
-
-function tornarLogoClicavel() {
-    const logo = document.querySelector('nav .LOGO1 img');
-    
-    if (logo) {
-        logo.style.cursor = 'pointer';
-        logo.onclick = function() {
-            window.location.href = 'index.php';
-        };
-    }
-}
-
-    
+      }
+    });
 
     const searchData = [
       { title: 'Gestão de Rotas', description: 'Visualize e gerencie todas as rotas do sistema ferroviário', keywords: ['rota', 'rotas', 'gestao', 'ferrovia', 'trem', 'linha'], page: 'rotas2.php' },
@@ -312,14 +281,10 @@ function tornarLogoClicavel() {
     const resultsContainer = document.getElementById('resultsContainer');
     const resultsContent = document.getElementById('resultsContent');
 
-
     function normalizeText(text) {
-      return text.toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
+      return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     }
 
-   
     function performSearch(query) {
       const normalizedQuery = normalizeText(query.trim());
       
@@ -340,7 +305,6 @@ function tornarLogoClicavel() {
       displayResults(results);
     }
 
-  
     function displayResults(results) {
       resultsContainer.classList.add('show');
 
@@ -363,18 +327,15 @@ function tornarLogoClicavel() {
       `).join('');
     }
 
-    
     searchForm.addEventListener('submit', function(e) {
       e.preventDefault();
       performSearch(searchInput.value);
     });
 
-    
     searchInput.addEventListener('input', function() {
       performSearch(this.value);
     });
 
-    
     document.addEventListener('click', function(e) {
       if (!resultsContainer.contains(e.target) && 
           !searchInput.contains(e.target) && 
@@ -383,7 +344,6 @@ function tornarLogoClicavel() {
       }
     });
 
-    
     searchInput.addEventListener('focus', function() {
       if (this.value.trim().length >= 2) {
         resultsContainer.classList.add('show');

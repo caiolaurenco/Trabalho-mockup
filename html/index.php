@@ -8,6 +8,7 @@ include "../php/db.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Ferroviário</title>
+    <link rel="stylesheet" href="../Css/style.css">
     <style>
         * {
             margin: 0;
@@ -17,7 +18,7 @@ include "../php/db.php";
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #ffffff;
+            background: #d9d9d9;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -43,11 +44,13 @@ include "../php/db.php";
             font-size: 2em;
             margin-bottom: 10px;
             text-shadow: none;
+            color: #2c3e50;
         }
 
         .header p {
             font-size: 1.1em;
             opacity: 0.9;
+            color: #546e7a;
         }
 
         .menu-container {
@@ -60,7 +63,7 @@ include "../php/db.php";
         }
 
         .menu-item {
-            background: #e8e8e8;
+            background: white;
             border-radius: 15px;
             padding: 25px;
             text-align: center;
@@ -80,6 +83,7 @@ include "../php/db.php";
 
         .menu-item:hover {
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transform: translateY(-5px);
         }
 
         .menu-item img {
@@ -94,7 +98,7 @@ include "../php/db.php";
 
         .menu-item h3 {
             font-size: 1em;
-            color: rgb(0, 0, 0);
+            color: #2c3e50;
             margin-top: 5px;
             line-height: 1.3;
             z-index: 2;
@@ -158,11 +162,6 @@ include "../php/db.php";
         <a href="gerenciar_usuarios.php" class="menu-item">
             <img src="../imagem/casa.png" alt="Gerenciar Usuários">
             <h3>Gerenciar<br>Usuários</h3>
-        </a>
-
-        <a href="rotas2.php" class="menu-item">
-            <img src="../imagem/front-of-bus.png" alt="Rotas">
-            <h3>Rotas</h3>
         </a>
 
         <a href="rotas2.php" class="menu-item">

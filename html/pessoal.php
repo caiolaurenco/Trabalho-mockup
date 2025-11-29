@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Usuário</title>
     <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #d9d9d9;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
         }
 
         .content-wrapper {
@@ -26,97 +34,336 @@
 
         .form-container {
             background: white;
-            padding: 30px;
+            padding: 40px;
             width: 100%;
-            max-width: 500px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.15);
+            max-width: 550px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.6s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 20px;
-            color: #003366;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        h2 i {
+            color: #667eea;
         }
 
         h3 {
             text-align: center;
-            color: #003366;
-            margin-bottom: 20px;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        h3 i {
+            color: #667eea;
         }
 
         label {
-            font-weight: bold;
-            color: #333;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 14px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 8px;
         }
 
         input, select {
             width: 100%;
-            padding: 12px;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            border-radius: 8px;
-            border: 1px solid #bbb;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
             box-sizing: border-box;
+            font-size: 16px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
         }
 
-        button {
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        button[type="submit"] {
             width: 100%;
-            padding: 14px;
-            background: #4A5CF1;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
             color: white;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
         }
 
-        button:hover {
-            background: #343f9c;
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
         }
 
         .msg {
-            margin-top: 10px;
+            margin-top: 15px;
             text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .usuarios-section {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.15);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.6s ease 0.2s both;
         }
 
         .lista-usuarios {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 20px;
         }
 
         .usuario {
-            background-color: #ecf0f1;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border-radius: 15px;
             padding: 25px;
-            border-left: 5px solid #003366;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .usuario p {
-            margin: 10px 0;
+        .usuario::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .usuario:hover::before {
+            left: 100%;
+        }
+
+        .usuario:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .usuario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .usuario-nome {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .usuario-nome i {
+            color: #667eea;
+        }
+
+        .usuario-cargo {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .cargo-funcionario {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .cargo-administrador {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .usuario-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #495057;
+        }
+
+        .info-item i {
+            color: #667eea;
+            width: 20px;
+        }
+
+        .info-item strong {
+            color: #2c3e50;
+        }
+
+        .usuario-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #dee2e6;
+        }
+
+        .btn-delete {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-delete:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-limpar-todos {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
             font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
         }
 
-        .usuario strong {
-            color: #003366;
+        .btn-limpar-todos:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
         }
 
         .sem-usuarios {
             text-align: center;
-            color: #666;
+            color: #95a5a6;
             font-style: italic;
-            padding: 20px;
+            padding: 60px 20px;
+            font-size: 18px;
+        }
+
+        .sem-usuarios i {
+            font-size: 60px;
+            color: #bdc3c7;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .contador-usuarios {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .contador-usuarios i {
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                padding: 20px 10px;
+            }
+
+            .form-container, .usuarios-section {
+                padding: 25px;
+            }
+
+            .usuario-info {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
         }
     </style>
 
@@ -127,7 +374,7 @@
         <ul>
             <li><a href="index.php"><img src="../imagem/casa.png" alt="casa">Início</a></li>
             <li><a href="pessoal.php"><img src="../imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
-            <li><a href="index.php"><img src="../imagem/front-of-bus.png" alt="bus2"> Rotas</a></li>
+            <li><a href="gerenciar_usuarios.php"><img src="../imagem/casa.png" alt="usuarios"> Gerenciar Usuários</a></li>
             <li><a href="rotas2.php"><img src="../imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
             <li><a href="horario.php"><img src="../imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
             <li><a href="notific.php"><img src="../imagem/carta.png" alt="carta">Relatórios</a></li>
@@ -153,85 +400,211 @@
 
     <div class="content-wrapper">
         <div class="form-container">
-            <h2>Cadastro de Usuário</h2>
+            <h2>
+                <i class="fas fa-user-plus"></i>
+                Cadastro de Usuário
+            </h2>
 
             <form id="formCadastro" class="formulario">
 
-                <label>Nome completo:</label>
-                <input type="text" name="name" required>
+                <label><i class="fas fa-user"></i> Nome completo:</label>
+                <input type="text" name="name" required placeholder="Digite o nome completo">
 
-                <label>E-mail:</label>
-                <input type="email" name="email" required>
+                <label><i class="fas fa-envelope"></i> E-mail:</label>
+                <input type="email" name="email" required placeholder="exemplo@email.com">
 
-                <label>CPF:</label>
-                <input type="text" name="cpf" maxlength="20" required>
+                <label><i class="fas fa-id-card"></i> CPF:</label>
+                <input type="text" name="cpf" id="cpf" maxlength="14" required placeholder="000.000.000-00">
 
-                <label>Senha:</label>
-                <input type="password" name="password" required>
+                <label><i class="fas fa-lock"></i> Senha:</label>
+                <input type="password" name="password" required placeholder="Mínimo 4 caracteres">
 
-                <label>Data de nascimento:</label>
+                <label><i class="fas fa-calendar"></i> Data de nascimento:</label>
                 <input type="date" name="data_nasc" required>
 
-                <label>Cargo:</label>
+                <label><i class="fas fa-briefcase"></i> Cargo:</label>
                 <select name="cargo" required>
                     <option value="">Selecione um cargo</option>
                     <option value="funcionario">Funcionário</option>
                     <option value="administrador">Administrador</option>
                 </select>
 
-                <button type="submit">Cadastrar</button>
+                <button type="submit">
+                    <i class="fas fa-check"></i>
+                    Cadastrar Usuário
+                </button>
 
                 <div class="msg" id="msg"></div>
             </form>
         </div>
 
         <div class="usuarios-section">
-            <h3>Usuários Cadastrados</h3>
+            <h3>
+                <i class="fas fa-users"></i>
+                Usuários Cadastrados
+            </h3>
+
+            <div class="contador-usuarios" id="contadorUsuarios">
+                <i class="fas fa-info-circle"></i>
+                <span id="numeroUsuarios">0</span> usuário(s) cadastrado(s)
+            </div>
+
+            <button class="btn-limpar-todos" id="btnLimparTodos" style="display: none;">
+                <i class="fas fa-trash-alt"></i>
+                Limpar Todos os Usuários
+            </button>
+
             <div class="lista-usuarios" id="listaUsuarios">
-                <p class="sem-usuarios">Carregando usuários...</p>
+                <div class="sem-usuarios">
+                    <i class="fas fa-user-slash"></i>
+                    Carregando usuários...
+                </div>
             </div>
         </div>
     </div>
 
     <script src="../Js/script.js"></script>
     <script>
+    const USERS_KEY = 'mockup_users_v1';
+
     document.addEventListener('DOMContentLoaded', function() {
         carregarUsuarios();
+        aplicarMascaraCPF();
     });
+
+    function aplicarMascaraCPF() {
+        const cpfInput = document.getElementById('cpf');
+        cpfInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 9) {
+                value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+            } else if (value.length > 6) {
+                value = value.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+            } else if (value.length > 3) {
+                value = value.replace(/(\d{3})(\d{1,3})/, '$1.$2');
+            }
+            
+            e.target.value = value;
+        });
+    }
 
     function carregarUsuarios() {
         const listaContainer = document.getElementById('listaUsuarios');
-        const USERS_KEY = 'mockup_users_v1';
+        const contadorSpan = document.getElementById('numeroUsuarios');
+        const btnLimparTodos = document.getElementById('btnLimparTodos');
         
         try {
             const raw = localStorage.getItem(USERS_KEY);
             const users = raw ? JSON.parse(raw) : [];
             
+            contadorSpan.textContent = users.length;
+            
             if (users.length === 0) {
-                listaContainer.innerHTML = '<p class="sem-usuarios">Nenhum usuário cadastrado.</p>';
+                listaContainer.innerHTML = `
+                    <div class="sem-usuarios">
+                        <i class="fas fa-user-slash"></i>
+                        Nenhum usuário cadastrado.
+                    </div>
+                `;
+                btnLimparTodos.style.display = 'none';
                 return;
             }
             
+            btnLimparTodos.style.display = 'block';
+            
             listaContainer.innerHTML = '';
-            users.forEach(user => {
+            users.forEach((user, index) => {
                 const div = document.createElement('div');
                 div.className = 'usuario';
                 div.innerHTML = `
-                    <p><strong>${user.name}</strong></p>
-                    <p>Email: ${user.email}</p>
-                    <p>CPF: ${user.cpf || 'Não informado'}</p>
-                    <p>Data de Nascimento: ${user.data_nasc || 'Não informada'}</p>
-                    <p>Cargo: ${user.cargo || user.profile || 'Não informado'}</p>
+                    <div class="usuario-header">
+                        <div class="usuario-nome">
+                            <i class="fas fa-user-circle"></i>
+                            ${user.name}
+                        </div>
+                        <span class="usuario-cargo cargo-${user.cargo}">
+                            ${user.cargo === 'administrador' ? '👑 Administrador' : '👤 Funcionário'}
+                        </span>
+                    </div>
+                    <div class="usuario-info">
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>${user.email}</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-id-card"></i>
+                            <span>${user.cpf || 'Não informado'}</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>${user.data_nasc ? formatarData(user.data_nasc) : 'Não informada'}</span>
+                        </div>
+                    </div>
+                    <div class="usuario-actions">
+                        <button class="btn-delete" onclick="excluirUsuario(${index})">
+                            <i class="fas fa-trash"></i>
+                            Excluir Usuário
+                        </button>
+                    </div>
                 `;
                 listaContainer.appendChild(div);
             });
         } catch (e) {
-            listaContainer.innerHTML = '<p class="sem-usuarios">Erro ao carregar usuários.</p>';
+            listaContainer.innerHTML = `
+                <div class="sem-usuarios">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Erro ao carregar usuários.
+                </div>
+            `;
+            btnLimparTodos.style.display = 'none';
         }
     }
 
+    function formatarData(data) {
+        if (!data) return 'Não informada';
+        const partes = data.split('-');
+        if (partes.length === 3) {
+            return `${partes[2]}/${partes[1]}/${partes[0]}`;
+        }
+        return data;
+    }
+
+    function excluirUsuario(index) {
+        if (confirm('❌ Deseja realmente excluir este usuário?')) {
+            try {
+                const raw = localStorage.getItem(USERS_KEY);
+                const users = raw ? JSON.parse(raw) : [];
+                
+                users.splice(index, 1);
+                
+                localStorage.setItem(USERS_KEY, JSON.stringify(users));
+                
+                carregarUsuarios();
+                
+                mostrarMensagem('✅ Usuário excluído com sucesso!', 'success');
+            } catch (e) {
+                mostrarMensagem('❌ Erro ao excluir usuário.', 'error');
+            }
+        }
+    }
+
+    document.getElementById('btnLimparTodos').addEventListener('click', function() {
+        if (confirm('⚠️ ATENÇÃO! Deseja realmente excluir TODOS os usuários cadastrados?\n\nEsta ação não pode ser desfeita!')) {
+            if (confirm('🚨 Última confirmação: Tem certeza absoluta?')) {
+                try {
+                    localStorage.setItem(USERS_KEY, JSON.stringify([]));
+                    carregarUsuarios();
+                    mostrarMensagem('✅ Todos os usuários foram excluídos!', 'success');
+                } catch (e) {
+                    mostrarMensagem('❌ Erro ao limpar usuários.', 'error');
+                }
+            }
+        }
+    });
+
     function salvarUsuario(userData) {
-        const USERS_KEY = 'mockup_users_v1';
         try {
             const raw = localStorage.getItem(USERS_KEY);
             const users = raw ? JSON.parse(raw) : [];
@@ -243,44 +616,95 @@
         }
     }
 
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function mostrarMensagem(texto, tipo) {
+        const msg = document.getElementById("msg");
+        msg.innerHTML = texto;
+        
+        if (tipo === 'success') {
+            msg.style.color = "#27ae60";
+            msg.style.backgroundColor = "#eafaf1";
+        } else if (tipo === 'error') {
+            msg.style.color = "#e74c3c";
+            msg.style.backgroundColor = "#fee";
+        } else {
+            msg.style.color = "#0066cc";
+            msg.style.backgroundColor = "#e6f2ff";
+        }
+        
+        setTimeout(() => {
+            msg.innerHTML = '';
+            msg.style.backgroundColor = 'transparent';
+        }, 5000);
+    }
+
     document.getElementById("formCadastro").addEventListener("submit", async function(e){
         e.preventDefault();
 
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
 
+        // Validação dos campos
         if (!data.name || !data.email || !data.cpf || !data.password || !data.data_nasc || !data.cargo) {
-            const msg = document.getElementById("msg");
-            msg.innerHTML = "Por favor, preencha todos os campos.";
-            msg.style.color = "red";
+            mostrarMensagem("❌ Por favor, preencha todos os campos.", "error");
             return;
         }
 
+        // Validação de e-mail
+        if (!isValidEmail(data.email)) {
+            mostrarMensagem("❌ Por favor, insira um e-mail válido.", "error");
+            return;
+        }
+
+        // Salvar no localStorage
         salvarUsuario(data);
 
-        const req = await fetch("../php/api.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
+        // Mostrar mensagem de carregamento
+        mostrarMensagem("⏳ Cadastrando usuário...", "loading");
 
-        const res = await req.json();
-        const msg = document.getElementById("msg");
+        try {
+            const req = await fetch("../php/api.php", {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
 
-        msg.innerHTML = res.message;
-        msg.style.color = res.success ? "green" : "red";
+            // Verificar se a resposta é JSON
+            const contentType = req.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                const textResponse = await req.text();
+                console.error("Resposta não é JSON:", textResponse);
+                throw new Error("Servidor retornou formato inválido (esperado JSON)");
+            }
 
-        if (res.success) {
-            carregarUsuarios();
-            
-            this.reset();
-            
-            setTimeout(() => {
-                window.location.href = "index.php";
-            }, 2000);
+            const res = await req.json();
+
+            mostrarMensagem(
+                res.success ? "✅ " + res.message : "❌ " + res.message, 
+                res.success ? "success" : "error"
+            );
+
+            if (res.success) {
+                carregarUsuarios();
+                this.reset();
+                
+                setTimeout(() => {
+                    window.location.href = "index.php";
+                }, 2000);
+            }
+        } catch (error) {
+            console.error("Erro ao cadastrar:", error);
+            mostrarMensagem("❌ Erro ao conectar com o servidor: " + error.message, "error");
         }
     });
 
+    // Tornar logo clicável
     document.addEventListener('DOMContentLoaded', function() {
         const logo = document.querySelector('nav .LOGO1 img');
         
@@ -322,17 +746,6 @@
             });
         }
     });
-
-    function tornarLogoClicavel() {
-        const logo = document.querySelector('nav .LOGO1 img');
-        
-        if (logo) {
-            logo.style.cursor = 'pointer';
-            logo.onclick = function() {
-                window.location.href = 'index.php';
-            };
-        }
-    }
     </script>
 
 </body>

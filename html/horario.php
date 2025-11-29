@@ -17,7 +17,7 @@ include "../php/db.php";
         }
         
         .filtros {
-            background: white;
+            background: #d9d9d9;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -119,17 +119,17 @@ include "../php/db.php";
 </head>
 <body class="horario-page">
     <aside id="sidebar" class="sidebar">
-        <ul>
-            <li><a href="index.php"><img src="../imagem/casa.png" alt="casa">Início</a></li>
-            <li><a href="pessoal.php"><img src="../imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
-            <li><a href="index.php"><img src="../imagem/front-of-bus.png" alt="bus2"> Rotas</a></li>
-            <li><a href="rotas2.php"><img src="../imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
-            <li><a href="horario.php"><img src="../imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
-            <li><a href="notific.php"><img src="../imagem/carta.png" alt="carta">Relatórios</a></li>
-            <li><a href="buscar.php"><img src="../imagem/search (1).png" alt="search"> Buscar</a></li>
-            <li><a href="capa.php"><img src="../imagem/sair.png" alt="sair"> Sair</a></li>
-        </ul>
-    </aside>
+    <ul>
+        <li><a href="index.php"><img src="../imagem/casa.png" alt="casa">Início</a></li>
+        <li><a href="pessoal.php"><img src="../imagem/msg.png" alt="msg"> Informações Pessoais</a></li>
+        <li><a href="gerenciar_usuarios.php"><img src="../imagem/casa.png" alt="usuarios"> Gerenciar Usuários</a></li>
+        <li><a href="rotas2.php"><img src="../imagem/bus.png" alt="bus"> Gestão de Rotas</a></li>
+        <li><a href="horario.php"><img src="../imagem/lugar.png" alt="lugar"> Quadro de Horários</a></li>
+        <li><a href="notific.php"><img src="../imagem/carta.png" alt="carta">Relatórios</a></li>
+        <li><a href="buscar.php"><img src="../imagem/search (1).png" alt="search"> Buscar</a></li>
+        <li><a href="capa.php"><img src="../imagem/sair.png" alt="sair"> Sair</a></li>
+    </ul>
+</aside>
     
     <nav>
         <div class="flex">
