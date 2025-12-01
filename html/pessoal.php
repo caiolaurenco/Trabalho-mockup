@@ -465,10 +465,8 @@
 
     <script src="../Js/script.js"></script>
     <script>
-    const USERS_KEY = 'mockup_users_v1';
-
     document.addEventListener('DOMContentLoaded', function() {
-        carregarUsuarios();
+        carregarUsuariosDoBanco();
         aplicarMascaraCPF();
     });
 
@@ -490,15 +488,20 @@
         });
     }
 
-    function carregarUsuarios() {
+    async function carregarUsuariosDoBanco() {
         const listaContainer = document.getElementById('listaUsuarios');
         const contadorSpan = document.getElementById('numeroUsuarios');
         const btnLimparTodos = document.getElementById('btnLimparTodos');
         
         try {
-            const raw = localStorage.getItem(USERS_KEY);
-            const users = raw ? JSON.parse(raw) : [];
+            const response = await fetch('../php/listar_ususarios.php');
+            const data = await response.json();
             
+            if (!data.success) {
+                throw new Error(data.message || 'Erro ao carregar usuários');
+            }
+            
+            const users = data.usuarios || [];
             contadorSpan.textContent = users.length;
             
             if (users.length === 0) {
@@ -515,7 +518,7 @@
             btnLimparTodos.style.display = 'block';
             
             listaContainer.innerHTML = '';
-            users.forEach((user, index) => {
+            users.forEach((user) => {
                 const div = document.createElement('div');
                 div.className = 'usuario';
                 div.innerHTML = `
@@ -543,7 +546,7 @@
                         </div>
                     </div>
                     <div class="usuario-actions">
-                        <button class="btn-delete" onclick="excluirUsuario(${index})">
+                        <button class="btn-delete" onclick="excluirUsuarioDoBanco(${user.id}, '${user.name.replace(/'/g, "\\'")}')">
                             <i class="fas fa-trash"></i>
                             Excluir Usuário
                         </button>
@@ -552,10 +555,11 @@
                 listaContainer.appendChild(div);
             });
         } catch (e) {
+            console.error('Erro ao carregar usuários:', e);
             listaContainer.innerHTML = `
                 <div class="sem-usuarios">
                     <i class="fas fa-exclamation-triangle"></i>
-                    Erro ao carregar usuários.
+                    Erro ao carregar usuários: ${e.message}
                 </div>
             `;
             btnLimparTodos.style.display = 'none';
@@ -571,50 +575,67 @@
         return data;
     }
 
-    function excluirUsuario(index) {
-        if (confirm('❌ Deseja realmente excluir este usuário?')) {
+    async function excluirUsuarioDoBanco(id, nome) {
+        if (id === 1) {
+            alert('⚠️ O usuário administrador padrão não pode ser excluído!');
+            return;
+        }
+
+        if (confirm(`❌ Deseja realmente excluir o usuário "${nome}"?`)) {
             try {
-                const raw = localStorage.getItem(USERS_KEY);
-                const users = raw ? JSON.parse(raw) : [];
-                
-                users.splice(index, 1);
-                
-                localStorage.setItem(USERS_KEY, JSON.stringify(users));
-                
-                carregarUsuarios();
-                
-                mostrarMensagem('✅ Usuário excluído com sucesso!', 'success');
+                const response = await fetch('../php/excluir_usuario.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    mostrarMensagem('✅ Usuário excluído com sucesso!', 'success');
+                    await carregarUsuariosDoBanco();
+                } else {
+                    mostrarMensagem('❌ Erro: ' + result.message, 'error');
+                }
             } catch (e) {
-                mostrarMensagem('❌ Erro ao excluir usuário.', 'error');
+                console.error('Erro ao excluir:', e);
+                mostrarMensagem('❌ Erro ao excluir usuário', 'error');
             }
         }
     }
 
-    document.getElementById('btnLimparTodos').addEventListener('click', function() {
-        if (confirm('⚠️ ATENÇÃO! Deseja realmente excluir TODOS os usuários cadastrados?\n\nEsta ação não pode ser desfeita!')) {
+    document.getElementById('btnLimparTodos').addEventListener('click', async function() {
+        if (confirm('⚠️ ATENÇÃO! Deseja realmente excluir TODOS os usuários cadastrados (exceto o admin padrão)?\n\nEsta ação não pode ser desfeita!')) {
             if (confirm('🚨 Última confirmação: Tem certeza absoluta?')) {
                 try {
-                    localStorage.setItem(USERS_KEY, JSON.stringify([]));
-                    carregarUsuarios();
-                    mostrarMensagem('✅ Todos os usuários foram excluídos!', 'success');
+                    mostrarMensagem('⏳ Excluindo usuários...', 'loading');
+                    
+                    const response = await fetch('../php/listar_ususarios.php');
+                    const data = await response.json();
+                    
+                    if (data.success && data.usuarios) {
+                        let excluidos = 0;
+                        for (const user of data.usuarios) {
+                            if (user.id !== 1) {
+                                await fetch('../php/excluir_usuario.php', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ id: user.id })
+                                });
+                                excluidos++;
+                            }
+                        }
+                        
+                        await carregarUsuariosDoBanco();
+                        mostrarMensagem(`✅ ${excluidos} usuário(s) foram excluídos!`, 'success');
+                    }
                 } catch (e) {
+                    console.error('Erro:', e);
                     mostrarMensagem('❌ Erro ao limpar usuários.', 'error');
                 }
             }
         }
     });
-
-    function salvarUsuario(userData) {
-        try {
-            const raw = localStorage.getItem(USERS_KEY);
-            const users = raw ? JSON.parse(raw) : [];
-            users.push(userData);
-            localStorage.setItem(USERS_KEY, JSON.stringify(users));
-            return true;
-        } catch (e) {
-            return false;
-        }
-    }
 
     function isValidEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -647,22 +668,16 @@
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
 
-        // Validação dos campos
         if (!data.name || !data.email || !data.cpf || !data.password || !data.data_nasc || !data.cargo) {
             mostrarMensagem("❌ Por favor, preencha todos os campos.", "error");
             return;
         }
 
-        // Validação de e-mail
         if (!isValidEmail(data.email)) {
             mostrarMensagem("❌ Por favor, insira um e-mail válido.", "error");
             return;
         }
 
-        // Salvar no localStorage
-        salvarUsuario(data);
-
-        // Mostrar mensagem de carregamento
         mostrarMensagem("⏳ Cadastrando usuário...", "loading");
 
         try {
@@ -675,7 +690,6 @@
                 body: JSON.stringify(data)
             });
 
-            // Verificar se a resposta é JSON
             const contentType = req.headers.get("content-type");
             if (!contentType || !contentType.includes("application/json")) {
                 const textResponse = await req.text();
@@ -691,7 +705,7 @@
             );
 
             if (res.success) {
-                carregarUsuarios();
+                await carregarUsuariosDoBanco();
                 this.reset();
                 
                 setTimeout(() => {
@@ -704,7 +718,6 @@
         }
     });
 
-    // Tornar logo clicável
     document.addEventListener('DOMContentLoaded', function() {
         const logo = document.querySelector('nav .LOGO1 img');
         
@@ -721,27 +734,6 @@
             });
             
             logo.addEventListener('click', function() {
-                window.location.href = 'index.php';
-            });
-
-            logo.setAttribute('tabindex', '0');
-            logo.setAttribute('role', 'button');
-            logo.setAttribute('aria-label', 'Voltar para página inicial');
-            
-            logo.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    window.location.href = 'index.php';
-                }
-            });
-        }
-        
-        const logoContainer = document.querySelector('nav .LOGO1');
-        
-        if (logoContainer && !logoContainer.querySelector('a')) {
-            logoContainer.style.cursor = 'pointer';
-            
-            logoContainer.addEventListener('click', function() {
                 window.location.href = 'index.php';
             });
         }
